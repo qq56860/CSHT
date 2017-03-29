@@ -1,0 +1,47 @@
+.list{
+	width:1000px;
+	position: relative;
+	left:180px;
+	top:150px;
+	/* border: double;
+	border-color: black; */
+}
+
+.select-proprety{
+	width: 130px;
+	height: 50px;
+	position: relative;
+	top: 22px;
+}
+
+.select-proprety:hover{
+	color: white;
+}
+
+
+.dashed li{
+	list-style-type: none;
+	height: 0px;
+	width: 10px;
+	border-bottom:solid;
+	border-color: #33CC99;
+	float: left;
+	position: relative;
+	margin-left: 10px;
+}
+
+.list-publish{
+	font-size: 30px;
+	position:absolute;
+	left: 1000px;
+}
+
+.list-buy{
+	font-size: 30px;
+	position: absolute;;
+	left: 1000px;
+	top:200px;
+}
+
+
+

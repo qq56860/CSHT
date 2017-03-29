@@ -1,0 +1,33 @@
+.header-hight{
+	height: 120px;
+}
+
+#logined_div{
+	/* border: double;
+	border-color: red; */
+	height: 40px;
+	width:150px;
+	position: absolute;
+	top:30px;
+	left:900px;
+	display: none;
+}
+
+.dropdown:hover .header-dropdown-menu{
+	display: block;
+}
+
+.header-dropdown-menu{
+	width:auto;
+	display: none;
+} 
+
+.header-dropdown-menu li{
+	display:block;
+	padding-top:5px;
+	padding-bottom:5px;
+	/* border: solid;
+	border-color: red; */
+	position: relative;
+	background-color: white;
+}

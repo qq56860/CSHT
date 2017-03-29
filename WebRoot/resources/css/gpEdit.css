@@ -1,0 +1,63 @@
+.mainTones-green{
+	color: #33CC99;
+	font-family: "微软雅黑";
+}
+.mainTones-green:hover{
+	color: #33AA99;
+	font-family: "微软雅黑";
+}
+.mainTones-bg-green{
+	background-color: #33CC99;
+}
+
+.mainTones-bg-green:hover{
+	background-color: #33BB99;
+}
+
+.mainTones-yellow{
+	color: #FFFF00;
+	font-family: "微软雅黑";
+}
+.mainTones-bg-yellow{
+	background-color: #FFFF00;
+}
+
+.mainTones-white{
+	color: white;
+	font-family: "微软雅黑";
+}
+
+.mainTones-white:hover{
+	color: white;
+	font-family: "微软雅黑";
+}
+
+.mainTones-bg-white{
+	background-color: inherit;
+}
+
+.level-gray{
+	background-color: #CCCCCC;
+}
+
+.para-middle{
+	text-align:center;
+	margin:0 auto;
+}
+
+.a-hovor{
+	text-decoration:none;
+}
+
+.font-bolder{
+	font-weight: bolder;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:HOVER {
+	text-decoration: none;
+}
+

@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebRoot/resources/jquery.min.js,WebRoot/resources/jquery-3.1.1.min.js,WebRoot/resources/jquery-3.1.1.js,WebRoot/resources/js,WebRoot/jsp
+validator.Unchecked=

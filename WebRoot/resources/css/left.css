@@ -1,0 +1,29 @@
+.left-position{
+	
+	width: 150px;
+	position: absolute;
+	top:150px;
+}
+
+.dropdown:hover .dropdown-menu {
+	display: block;
+}
+.dropdown-menu{
+	position: absolute;
+	left: 100px;
+	top: 0px;
+}
+
+.left li{
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+
+.dropdown-menu li{
+	font-size:small;
+	float: left;
+	margin-top: 5px;
+	margin-bottom:5px;
+	width: 50px;
+}

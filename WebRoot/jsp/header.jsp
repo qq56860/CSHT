@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            		</span>  
 						</form>
 					</div>
-					<div class="col-md-3 column " id="login_div">
+					<div class="col-md-2 column " id="login_div">
 						 <button type="button" style="position:absolute;left:-10px;top:30px"  class="btn btn-lg mainTones-bg-white font-bolder">
 						 <a href="" id="login" data-toggle="modal" class="a-hovor mainTones-green">登录</a>
 						 </button> 
@@ -71,6 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 <a href="" id="register" data-toggle="modal" class="a-hovor mainTones-green">注册</a>
 						 </button>
 					</div>
+					
 					
 					<div id="logined_div" >
 						

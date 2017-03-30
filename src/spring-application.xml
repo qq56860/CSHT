@@ -60,7 +60,7 @@
 	
 	<bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
-		<property name="basePackage" value="cn.com.mapper" />
+		<property name="basePackage" value="cn.com.mapper,cn.com.MyRealm" />
 	</bean>
 	
 </beans>  

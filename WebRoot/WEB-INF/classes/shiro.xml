@@ -6,9 +6,6 @@
 
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
 
-	<!-- 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 -->
-	<!-- <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.Sha256CredentialsMatcher"></bean> -->
-	
 	<!-- 缓存管理 -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"></bean>
 
@@ -21,29 +18,65 @@
 		<property name="permissionsQuery" value="SELECT menu_id permission_name from t_ss_sys_role_menu where role_code= ?"/>
 	</bean>
 	
-	<bean id="MyRealm" class="cn.com.shiro.realm.MyRealm"></bean>
+	<bean id="userRealm" class="cn.com.shiro.realm.UserRealm">
+		<!-- 匹配密码 -->
+		<!-- 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 -->
+		<!-- <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.Sha256CredentialsMatcher"></bean> -->
+	</bean>
+	<bean id="adminRealm" class="cn.com.shiro.realm.AdminRealm">
+		<!-- 匹配密码 -->
+		<!-- 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 -->
+		<!-- <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.Sha256CredentialsMatcher"></bean> -->
+	</bean>
+	
+	 <!--多个realm 的集中管理  -->
+    <bean id="defineModularRealmAuthenticator" class="cn.com.shiro.util.DefautModularRealm"> 
+        <property name="definedRealms">    
+            <map>    
+                <entry key="userRealm" value-ref="userRealm" />    
+                <entry key="adminRealm" value-ref="adminRealm" />    
+            </map>   
+        </property>  
+        <property name="authenticationStrategy">    
+            <bean class="org.apache.shiro.authc.pam.FirstSuccessfulStrategy" />    
+        </property> 
+    </bean>  
+	
+	
 	<!-- Shiro安全管理器 -->
+	<!-- Shiro默认会使用Servlet容器的Session -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!-- <property name="realm" ref="jdbcRealm"></property> -->
-		<property name="realm" ref="MyRealm"></property>
+		<property name="authenticator" ref="defineModularRealmAuthenticator" /> 
+		<property name="realms"  >
+            <list>
+               <bean id="userRealm" class="cn.com.shiro.realm.UserRealm" /> 
+               <bean id="adminRealm" class="cn.com.shiro.realm.AdminRealm" /> 
+            </list>
+        </property>
 		<property name="cacheManager" ref="cacheManager"></property>
 	</bean>
 	
+	
+	
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager"></property>
-		<property name="loginUrl" value="/jsp/homePage.jsp"></property>
+		<property name="loginUrl" value="/"></property>
 		<!-- 用户访问未对其授权的资源时，所显示的连接 -->
-		<property name="unauthorizedUrl" value="/jsp/homePage.jsp"></property>
+		<property name="unauthorizedUrl" value="/"></property>
 		
 		<property name="filterChainDefinitions">
 			<value>
-				/CSHT/jsp/homePage.jsp=anon
 				/=anon
 				
 				/user/login=anon
 				/user/reg=anon
 				
+				
+				
 				/CSHT/jsp/goods/list.jsp = roles[admin]
+				
+				
 				
 				/resources/**=anon
 				/** = authc

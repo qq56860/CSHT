@@ -47,6 +47,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</ul>
 			</div>
 			
+			<div class="btn btn-lg mainTones-white navbar-fixed-bottom" id="">
+				 <a href="#" class="pull-right">
+					 <button type="button" class="btn btn-default btn-lg mainTones-green">
+			             <span class="glyphicon glyphicon-log-in "></span>&nbsp;&nbsp;
+			             <span class="mainTones-green font-bolder">求购专区</span>
+			         </button>
+		         </a>
+			</div>
+			
 			<div class="btn btn-lg mainTones-bg-yellow mainTones-white list-publish">
 				<span>我要发布</span>
 			</div>

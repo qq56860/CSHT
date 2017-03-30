@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.mapper.GoodsPublishMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.domain.GoodsPublish" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_content" property="goodsContent" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="trade_place" property="tradePlace" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="is_bargain" property="isBargain" jdbcType="BIT" />
+    <result column="collection_num" property="collectionNum" jdbcType="INTEGER" />
+    <result column="is_buyed" property="isBuyed" jdbcType="BIT" />
+    <result column="contact_me" property="contactMe" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="contact_qq" property="contactQq" jdbcType="VARCHAR" />
+    <result column="contact_we_chat" property="contactWeChat" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, type_id, goods_name, goods_content, pic, trade_place, price, is_bargain, 
+    collection_num, is_buyed, contact_me, create_time, contact_phone, contact_qq, contact_we_chat
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_publish
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from goods_publish
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.com.domain.GoodsPublish" >
+    insert into goods_publish (id, user_id, type_id, 
+      goods_name, goods_content, pic, 
+      trade_place, price, is_bargain, 
+      collection_num, is_buyed, contact_me, 
+      create_time, contact_phone, contact_qq, 
+      contact_we_chat)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsContent,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
+      #{tradePlace,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{isBargain,jdbcType=BIT}, 
+      #{collectionNum,jdbcType=INTEGER}, #{isBuyed,jdbcType=BIT}, #{contactMe,jdbcType=BIT}, 
+      #{createTime,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{contactQq,jdbcType=VARCHAR}, 
+      #{contactWeChat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.domain.GoodsPublish" >
+    insert into goods_publish
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsContent != null" >
+        goods_content,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="tradePlace != null" >
+        trade_place,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="isBargain != null" >
+        is_bargain,
+      </if>
+      <if test="collectionNum != null" >
+        collection_num,
+      </if>
+      <if test="isBuyed != null" >
+        is_buyed,
+      </if>
+      <if test="contactMe != null" >
+        contact_me,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="contactQq != null" >
+        contact_qq,
+      </if>
+      <if test="contactWeChat != null" >
+        contact_we_chat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsContent != null" >
+        #{goodsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePlace != null" >
+        #{tradePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="isBargain != null" >
+        #{isBargain,jdbcType=BIT},
+      </if>
+      <if test="collectionNum != null" >
+        #{collectionNum,jdbcType=INTEGER},
+      </if>
+      <if test="isBuyed != null" >
+        #{isBuyed,jdbcType=BIT},
+      </if>
+      <if test="contactMe != null" >
+        #{contactMe,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWeChat != null" >
+        #{contactWeChat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.domain.GoodsPublish" >
+    update goods_publish
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsContent != null" >
+        goods_content = #{goodsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePlace != null" >
+        trade_place = #{tradePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="isBargain != null" >
+        is_bargain = #{isBargain,jdbcType=BIT},
+      </if>
+      <if test="collectionNum != null" >
+        collection_num = #{collectionNum,jdbcType=INTEGER},
+      </if>
+      <if test="isBuyed != null" >
+        is_buyed = #{isBuyed,jdbcType=BIT},
+      </if>
+      <if test="contactMe != null" >
+        contact_me = #{contactMe,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        contact_qq = #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWeChat != null" >
+        contact_we_chat = #{contactWeChat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.domain.GoodsPublish" >
+    update goods_publish
+    set user_id = #{userId,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_content = #{goodsContent,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      trade_place = #{tradePlace,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      is_bargain = #{isBargain,jdbcType=BIT},
+      collection_num = #{collectionNum,jdbcType=INTEGER},
+      is_buyed = #{isBuyed,jdbcType=BIT},
+      contact_me = #{contactMe,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      contact_qq = #{contactQq,jdbcType=VARCHAR},
+      contact_we_chat = #{contactWeChat,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -32,8 +32,18 @@ public class GoodsPublish {
     private String contactQq;
 
     private String contactWeChat;
+    
+    private User User;
 
-    public String getId() {
+	public User getUser() {
+		return User;
+	}
+
+	public void setUser(User user) {
+		User = user;
+	}
+
+	public String getId() {
         return id;
     }
 

@@ -1,4 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -27,8 +31,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="left">
 	        <div class="left-position">
 	          <ul class="nav">
-	            <li class="font-bolder "><a href="#" class="mainTones-green">代步工具</a></li>
-	            <li class="font-bolder"><a href="#" class="mainTones-green">手机</a></li>
+	          	
+	          	<c:forEach items="${type}" var="type">
+	          		
+	          		
+	          		<li class="dropdown font-bolder "><a href="#" class="mainTones-green">${type.type }</a>
+		          		<ul class="dropdown-menu">
+		          			<c:forEach items="${sub}" var="sub">
+		          				<c:if test="${sub.typeId == type.id }">
+			                		<a href="#" class="mainTones-green"><li class="text-center">${sub.sub }</li></a>
+								</c:if>
+							</c:forEach>
+							<a href="#" class="mainTones-green"><li class="text-center">其他</li></a>
+		              	</ul>
+	          		</li>
+	          		
+	          		
+	          	</c:forEach>
+	          
+	            
+	            <!-- <li class="font-bolder"><a href="#" class="mainTones-green">手机</a></li>
 	            <li class="dropdown font-bolder"> <a href="#menu3" class="mainTones-green">电脑</a>
 	              <ul class="dropdown-menu">
 	                <a href="#" class="mainTones-green"><li class="text-center">联想</li></a>
@@ -38,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            </li> 
 	            <li class="font-bolder"><a href="#" class="mainTones-green ">Menu4</a></li>
 	            <li class="font-bolder"><a href="#" class="mainTones-green ">Menu5</a></li>
-	            <li class="font-bolder"><a href="#" class="mainTones-green ">Menu6</a></li>
+	            <li class="font-bolder"><a href="#" class="mainTones-green ">Menu6</a></li> -->
 	          </ul>
 	        </div>
 		</div>

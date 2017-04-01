@@ -7,14 +7,18 @@
 	border-color: red; */
 	height: 40px;
 	width:150px;
-	position: absolute;
+	position: relative;
 	top:30px;
-	left:900px;
-	display: none;
+	
 }
 
 .dropdown:hover .header-dropdown-menu{
 	display: block;
+}
+
+.header-dropdown{
+	position:absolute;
+	top:30px
 }
 
 .header-dropdown-menu{
@@ -24,10 +28,13 @@
 
 .header-dropdown-menu li{
 	display:block;
+	float:left;
 	padding-top:5px;
 	padding-bottom:5px;
+	margin-left:5px;
+	margin-right:5px;
 	/* border: solid;
 	border-color: red; */
 	position: relative;
-	background-color: white;
+	left: -30px;
 }

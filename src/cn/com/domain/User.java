@@ -1,5 +1,7 @@
 package cn.com.domain;
 
+import java.util.List;
+
 public class User {
     private String id;
 
@@ -24,8 +26,19 @@ public class User {
     private Integer studentCardAuthentication;
 
     private Integer isClose;
+    
+    private List<GoodsPublish> publishList;
+    
 
-    public String getId() {
+    public List<GoodsPublish> getPublishList() {
+		return publishList;
+	}
+
+	public void setPublishList(List<GoodsPublish> publishList) {
+		this.publishList = publishList;
+	}
+
+	public String getId() {
         return id;
     }
 

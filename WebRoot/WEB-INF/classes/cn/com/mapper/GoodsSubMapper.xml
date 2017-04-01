@@ -90,4 +90,13 @@
       is_hide = #{isHide,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    *
+    from goods_sub
+  </select>
+  
+  
+  
 </mapper>

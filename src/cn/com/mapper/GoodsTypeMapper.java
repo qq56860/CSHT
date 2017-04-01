@@ -1,5 +1,7 @@
 package cn.com.mapper;
 
+import java.util.ArrayList;
+
 import cn.com.domain.GoodsType;
 
 public interface GoodsTypeMapper {
@@ -14,4 +16,7 @@ public interface GoodsTypeMapper {
     int updateByPrimaryKeySelective(GoodsType record);
 
     int updateByPrimaryKey(GoodsType record);
+    
+    ArrayList<GoodsType> selectAll();
+    
 }

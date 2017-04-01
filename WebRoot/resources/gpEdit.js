@@ -5,7 +5,7 @@ $(function(){
     	  $('#forget-tab').removeClass('active');
     	  $('#login-tab').addClass('active');
     	  
-      });  
+      });
       
       $("#register").click(function(){ 
     	  $('#login_register_forget_modal').modal("show");
@@ -38,9 +38,20 @@ $(function(){
     	  $('#register-tab').removeClass('active');
       }); 
       
- })  
+      //login_logined.jsp  的iframe中的元素时间触发父页面事件
+      
+  	$("#iframe_login").click(function(){
+      	  
+  		parent.$("#login",parent.document).click();
+    }); 
+  	
+  	$("#iframe_register").click(function(){
+  		parent.$("#register",parent.document).click();
+    }); 
+      
+ });  
  
- function form_ajax(url,form_id){
+ function form_ajax(url,form_id,returnUrl){
 	 //alert($("#login_form").serialize());
 	  $.post(
 		  url,
@@ -51,10 +62,10 @@ $(function(){
 	    	  var resultJson='';
 	    	  eval('resultJson=' + data + ';');
 	    	  if(resultJson.statusCode == 200){
-	    		  $('#login_register_forget_modal').modal("hide");
-	    		  $('#login_div').hide();
-	    		  $('#logined_div').show();
-	    		  $('#logined_span').html(resultJson.nickname);
+	    		  $("#login_register_forget_modal").modal("hide");
+	    		 /* $("#user-info-tab").removeClass('active');
+	    		  $("#user-info-tab2").addClass('active');*/
+	    		  $("#login_iframe").attr('src',returnUrl);
 	    	  }else{
 	    		  alert(resultJson.message);
 	    	  }
@@ -62,16 +73,12 @@ $(function(){
     );
 }
  
-	/*function setIframeHeight(iframe) {
-		if (iframe) {
-		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-		if (iframeWin.document.body) {
-		iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-		}
-		}
-	};
-
-	window.onload = function () {
-		setIframeHeight(document.getElementById('external-frame'));
-	};*/
+ function iFrameHeight() {   
+	 var ifm= window.getElementById("login_iframe");   
+	 var subWeb = window.frames ? window.frames["login_iframe"].document : ifm.contentDocument;   
+	 if(ifm != null && subWeb != null) {
+	    ifm.height = subWeb.body.scrollHeight;
+	    ifm.width = subWeb.body.scrollWidth;
+	 }   
+ }   
  

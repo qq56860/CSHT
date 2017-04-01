@@ -20,10 +20,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
   </head>
   
-  <body>
-    This is my JSP page. <br>
+  <body  onload="javascript:window.location='/CSHT/homePage';">
     
-    <a href="test/haha">点一下</a>
+    
+    
     
   </body>
 </html>

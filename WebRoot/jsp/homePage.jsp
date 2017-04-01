@@ -34,7 +34,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     
     
-	<div class="tab-content active col-sm-10" >
+    
+	<div class="tab-content col-sm-10" >
 	 	<div class="tab-pane active" id="list-tab">
 	 		<jsp:include page="goods/list.jsp" flush="true" />
 	 	</div>
@@ -43,7 +44,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <%-- <div>
     	<jsp:include page="goods/list.jsp" flush="true" />
     </div> --%>
-    
+    <a href="" id="login" data-toggle="modal" class="a-hovor"></a>
+    <a href="" id="register" data-toggle="modal" class="a-hovor"></a>
  	<div class="modal fade" id="login_register_forget_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">	
 			<jsp:include page="/jsp/user/login_register_forget.jsp" flush="true"></jsp:include>
 	</div>

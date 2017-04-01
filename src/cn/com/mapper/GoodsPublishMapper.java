@@ -1,5 +1,7 @@
 package cn.com.mapper;
 
+import java.util.ArrayList;
+
 import cn.com.domain.GoodsPublish;
 
 public interface GoodsPublishMapper {
@@ -14,4 +16,8 @@ public interface GoodsPublishMapper {
     int updateByPrimaryKeySelective(GoodsPublish record);
 
     int updateByPrimaryKey(GoodsPublish record);
+    
+    ArrayList<GoodsPublish> selectByTime();
+    
+    
 }

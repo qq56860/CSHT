@@ -68,13 +68,14 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/=anon
+				/jsp/user/login_logined.jsp=anon
+				/jsp/goods/list.jsp=anon
 				
+				/homePage=anon
 				/user/login=anon
 				/user/reg=anon
 				
 				
-				
-				/CSHT/jsp/goods/list.jsp = roles[admin]
 				
 				
 				

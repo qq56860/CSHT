@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.logic.HomePageLogic;
 
@@ -21,7 +22,7 @@ public class HomePageController {
 	private HomePageLogic homePageLogic;
 	
 	@RequestMapping(value = "/homePage",produces= "text/plain;charset=UTF-8")
-	public String homePage(HttpServletRequest request,HttpServletResponse response){
+	public ModelAndView homePage(HttpServletRequest request,HttpServletResponse response){
 		log.info("homePage");
 		return homePageLogic.homePage(request, response);
 	}

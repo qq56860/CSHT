@@ -18,6 +18,9 @@
 	color: white;
 }
 
+.dashed{
+	position: relative;
+}
 
 .dashed li{
 	list-style-type: none;
@@ -43,5 +46,11 @@
 	top:200px;
 }
 
+.img_div{
+	width: 299px;
+	height: 299px;
+	position: relative;
+	left: -3px;
+}
 
 

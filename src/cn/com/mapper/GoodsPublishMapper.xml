@@ -18,6 +18,12 @@
     <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
     <result column="contact_qq" property="contactQq" jdbcType="VARCHAR" />
     <result column="contact_we_chat" property="contactWeChat" jdbcType="VARCHAR" />
+    
+    <association property="user" javaType="cn.com.domain.User">  
+            <id column="id" property="id" jdbcType="VARCHAR" />  
+            <result column="nick_name" property="nickName" jdbcType="VARCHAR" />  
+    </association>
+    
   </resultMap>
   <sql id="Base_Column_List" >
     id, user_id, type_id, goods_name, goods_content, pic, trade_place, price, is_bargain, 
@@ -220,4 +226,14 @@
       contact_we_chat = #{contactWeChat,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
+  <select id="selectByTime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    u.nick_name,p.*
+    from goods_publish p LEFT JOIN `user` u ON p.user_id = u.id
+    order by p.create_time 
+  </select>
+  
+  
+  
 </mapper>

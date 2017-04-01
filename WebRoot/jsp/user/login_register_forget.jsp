@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				            <div class="modal-footer">
 				            	<button type="button" id="login_register" class="btn btn-default pull-left">注册</button>
 				            	<button type="button" id="login_forget" class="btn btn-default pull-left">忘记密码</button>
-				                <button type="button" id="loginBtn" class="btn btn-primary" onclick="form_ajax('/CSHT/user/login','login_form')">登录</button>
+				                <button type="button" id="loginBtn" class="btn btn-primary" onclick="form_ajax('/CSHT/user/login','login_form','/CSHT/jsp/user/login_logined.jsp')">登录</button>
 				            </div>
 			            </div>
 		            </form>
@@ -119,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 				            <div class="modal-footer">
 				            	<button type="button" id="register_login" class="btn btn-default pull-left">登录</button>
-				                <button type="button" class="btn btn-primary" onclick="form_ajax('/CSHT/user/reg','reg_form')">确认注册</button>
+				                <button type="button" class="btn btn-primary" onclick="form_ajax('/CSHT/user/reg','reg_form','/CSHT/jsp/user/login_logined.jsp')">确认注册</button>
 				            </div>
 			            </div>
 		        	</form>

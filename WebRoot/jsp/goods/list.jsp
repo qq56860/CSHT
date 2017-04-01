@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -71,78 +73,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class=""></div>
 			
 			<div class="row" style="width: 1000px;">
-				<div class="col-md-4">
-					
-					<div class="thumbnail">
-						<a href="#">
-							<img alt="300x200" src="v3/default4.jpg" />
-						</a>
-						<div class="caption">
-							<a href="#">
-								<b>奥迪牌嘎嘎自行车</b>
-								<small class="pull-right">999</small>
-							</a>
-							<p>
-								a
-							</p>
-							<p> 
-								 <a class="btn" href="#">高一三班班草</a>
-								 
-								 <a class="btn pull-right" href="#">165收藏</a>
-							</p>
+				<c:forEach items="${goodsPublish }" var="publish">
+					<div class="col-md-4">
+						<div class="thumbnail">
+							<div class="img_div">
+								<a href="#">
+									<img style="width: 299px;height: 299px;" alt="${publish.goodsName }" src="${publish.pic }"/>
+								</a>
+							</div>
+							<br />
+							<div class="caption">
+								<a href="#" >
+									<b class="mainTones-green">${publish.goodsName }</b>
+									<small class="pull-right mainTones-yellow font-bolder">￥${publish.price }</small>
+								</a>
+								<p> 
+									 发布人：<a class="btn" href="#">${publish.user.nickName }</a>
+									 
+									 <a class="btn pull-right mainTones-yellow font-bolder" href="#">
+									 	<span class="glyphicon glyphicon-heart"></span>
+									 	${publish.collectionNum }
+									 </a>
+								</p>
+							</div>
 						</div>
 					</div>
-					
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<img alt="300x200" src="v3/default5.jpg" />
-						<div class="caption">
-							<h3>
-								Thumbnail label
-							</h3>
-							<p>
-								b
-							</p>
-							<p>
-								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<img alt="300x200" src="v3/default6.jpg" />
-						<div class="caption">
-							<h3>
-								Thumbnail label
-							</h3>
-							<p>
-								c
-							</p>
-							<p>
-								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 				
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<img alt="300x200" src="v3/default6.jpg" />
-						<div class="caption">
-							<h3>
-								Thumbnail label
-							</h3>
-							<p>
-								c
-							</p>
-							<p>
-								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
+				
 			
 			</div><!-- row -->
 		</div><!-- column9 -->

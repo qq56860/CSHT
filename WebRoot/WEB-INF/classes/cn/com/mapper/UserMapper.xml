@@ -14,6 +14,12 @@
     <result column="last_ip" property="lastIp" jdbcType="VARCHAR" />
     <result column="student_card_authentication" property="studentCardAuthentication" jdbcType="INTEGER" />
     <result column="is_close" property="isClose" jdbcType="INTEGER" />
+    
+    <collection property="publishList" ofType="cn.com.domain.GoodsPublish" column="id">  
+            <id column="id" property="id"/>
+            <result column="price" property="price"/>  
+    </collection> 
+    
   </resultMap>
   <sql id="Base_Column_List" >
     id, token, phone, email, nick_name, password, reg_time, login_num, last_time, last_ip, 

@@ -69,14 +69,13 @@
 			<value>
 				/=anon
 				/jsp/user/login_logined.jsp=anon
-				/jsp/goods/list.jsp=anon
 				
 				/homePage=anon
+				/homePageList=anon
 				/user/login=anon
 				/user/reg=anon
-				
-				
-				
+				/goods/detail=anon
+				/user/info=anon
 				
 				
 				/resources/**=anon

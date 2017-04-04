@@ -21,7 +21,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/bootstrap-theme.css"/>
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/bootstrap-theme.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/gpEdit.css" />
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/list.css"/>
+	
+	<script src="<%=basePath %>resources/jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+	
+	
+	<script src="<%=basePath %>resources/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="<%=basePath %>resources/gpEdit.js" type="text/javascript" charset="utf-8"></script>
   </head>
   
   <body>
@@ -33,11 +45,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<div class="dropdown">
 			    <div class="form-group">
-				    <select class="form-control select-proprety  btn btn-lg mainTones-bg-green mainTones-white font-bolder">
-				      <option  value="">最新发布</option>
-				      <option  value="">最多收藏</option>
+				    <select class="form-control select-proprety  btn btn-lg mainTones-bg-green mainTones-white font-bolder"
+				    		onchange="list_search('time_collection','')" id="time_collection_select">
+					      <option  value="time" >最新发布</option>
+					      <option  value="collection" ${time_collection == 'collection' ?"selected = 'selected'":"" } >最多收藏</option>
 				    </select>
 				</div>
+			</div>
 			
 			<div class="dashed"> 
 				<ul>
@@ -49,14 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</ul>
 			</div>
 			
-			<div class="btn btn-lg mainTones-white navbar-fixed-bottom" id="">
-				 <a href="#" class="pull-right">
-					 <button type="button" class="btn btn-default btn-lg mainTones-green">
-			             <span class="glyphicon glyphicon-log-in "></span>&nbsp;&nbsp;
-			             <span class="mainTones-green font-bolder">求购专区</span>
-			         </button>
-		         </a>
-			</div>
+			
 			
 			<div class="btn btn-lg mainTones-bg-yellow mainTones-white list-publish">
 				<span>我要发布</span>
@@ -67,40 +74,99 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			
 			<br />
-			
-			
-			
-			<div class=""></div>
+		
 			
 			<div class="row" style="width: 1000px;">
+			
 				<c:forEach items="${goodsPublish }" var="publish">
 					<div class="col-md-4">
 						<div class="thumbnail">
 							<div class="img_div">
-								<a href="#">
+								<a href="/CSHT/goods/detail?id=${publish.id }">
 									<img style="width: 299px;height: 299px;" alt="${publish.goodsName }" src="${publish.pic }"/>
 								</a>
 							</div>
 							<br />
 							<div class="caption">
-								<a href="#" >
+								<a href="/CSHT/goods/detail?id=${publish.id }" >
 									<b class="mainTones-green">${publish.goodsName }</b>
 									<small class="pull-right mainTones-yellow font-bolder">￥${publish.price }</small>
 								</a>
 								<p> 
-									 发布人：<a class="btn" href="#">${publish.user.nickName }</a>
-									 
-									 <a class="btn pull-right mainTones-yellow font-bolder" href="#">
-									 	<span class="glyphicon glyphicon-heart"></span>
+									 <a class="mainTones-yellow font-bolder pull-right" href="#">
+									 	<span class="glyphicon glyphicon-heart "></span>
 									 	${publish.collectionNum }
 									 </a>
+									 
+									 <br/>
+									
+									<span class="mainTones-gray">发布人：</span> 
+									<a class="btn mainTones-gray" href="#">${publish.user.nickName }</a>
 								</p>
 							</div>
 						</div>
 					</div>
 				</c:forEach>
+			
+			<div class="col-md-12 pager">
+				<ul class="pagination pagination-lg">
+				<c:if test="${pageNum > 1 }">
+					<li><a href="javascript:void(0)" onclick="list_search('page','${pageNum-1 }')"><span class="mainTones-green">&laquo;</span></a></li>
+				</c:if>
+				<c:if test="${pageNum > 4 }">
+					<li><a href="javascript:void(0)" onclick="list_search('page','1')"><span class="mainTones-green">1</span></a></li>
+				</c:if>
+				<c:if test="${pageNum >= 4 }">
+					<li><a href="javascript:void(0)"><span class="mainTones-green">...</span></a></li>
+				</c:if>
+				
+				<c:forEach var="num" begin="${beginPage }" end="${endPage }" >
+					<c:if test="${num == pageNum }">
+						<li>
+							<a href="javascript:void(0)" onclick="list_search('page',${num })">
+								<span >
+									${num }
+								</span> 
+							</a>
+						</li>
+					</c:if>
+					<c:if test="${num != pageNum }">
+						<li class="mainTones-yellow">
+							<a href="javascript:void(0)" onclick="list_search('page',${num })">
+								<span class="mainTones-yellow">
+									${num }
+								</span> 
+							</a>
+						</li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pageNum+3 <= pageNumber && pageNumber >= 6 }">
+					<li><a><span class="mainTones-yellow">.....</span></a></li>
+				</c:if>
+				
+				<c:if test="${pageNum+3 < pageNumber && pageNumber > 6 }">
+					<li><a href="javascript:void(0)" onclick="list_search('page','${pageNumber }')"><span class="mainTones-green">${pageNumber }</span></a></li>
+				</c:if>
+				<c:if test="${pageNum < pageNumber }">
+					<li><a href="javascript:void(0)" onclick="list_search('page','${pageNum+1 }')"><span class="mainTones-green">&raquo;</span></a></li>
+				</c:if>
+				</ul>
+			</div>
+			
 				
 				
+			<!-- list页面隐藏域 -->		
+			<form action="/CSHT/homePageList" id="search_form">
+				<input type="hidden" name="search" id="search_search" value="${search }"/>
+				<input type="hidden" name="type" id="type_search" value="${type }"/>
+				<input type="hidden" name="sub" id="sub_search" value="${sub }"/>
+				<input type="hidden" name="time_collection" id="time_collection_search" value="${time_collection }" />
+				<input type="hidden" name="pageNum" id="page_search" />
+			</form>
+					
+					
+					
+					
 			
 			</div><!-- row -->
 		</div><!-- column9 -->

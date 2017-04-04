@@ -8,9 +8,11 @@
 .dropdown:hover .dropdown-menu {
 	display: block;
 }
+
+
 .dropdown-menu{
 	position: absolute;
-	left: 100px;
+	left: 75px;
 	top: 0px;
 }
 

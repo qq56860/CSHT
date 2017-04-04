@@ -227,11 +227,35 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   
-  <select id="selectByTime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  
+  <sql id="sql_where">
+   	   <where>
+   	   <if test="search!=null and search !=''">
+		and CONCAT(p.goods_name,p.goods_content) LIKE CONCAT('%',#{search,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="type!=null and type !=''">
+		and p.type_id = #{type,jdbcType=VARCHAR}
+		</if>
+		<if test="sub!=null and sub !=''">
+		and p.sub_id = #{sub,jdbcType=VARCHAR}
+		</if>
+		</where>
+  </sql>
+  
+  <select id="selectGoodsSize" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select 
+    COUNT(id)
+    from goods_publish p
+    <include refid="sql_where" />
+  </select>
+  
+  <select id="selectGoods" resultMap="BaseResultMap" parameterType="java.util.Map" >
     select 
     u.nick_name,p.*
     from goods_publish p LEFT JOIN `user` u ON p.user_id = u.id
-    order by p.create_time 
+    <include refid="sql_where" />
+    order by ${time_collection} DESC
+    LIMIT ${begin},${end}
   </select>
   
   

@@ -27,4 +27,10 @@ public class HomePageController {
 		return homePageLogic.homePage(request, response);
 	}
 	
+	@RequestMapping(value = "/homePageList",produces= "text/plain;charset=UTF-8")
+	public ModelAndView homePageList(HttpServletRequest request,HttpServletResponse response){
+		log.info("homePageList");
+		return homePageLogic.homePageList(request, response);
+	}
+	
 }

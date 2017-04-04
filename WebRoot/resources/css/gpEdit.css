@@ -2,6 +2,12 @@
 	color: #33CC99;
 	font-family: "微软雅黑";
 }
+
+.mainTones-gray{
+	color: #CCCCCC;
+	font-family: "微软雅黑";
+}
+
 .mainTones-green:hover{
 	color: #33AA99;
 	font-family: "微软雅黑";
@@ -43,6 +49,11 @@
 .para-middle{
 	text-align:center;
 	margin:0 auto;
+}
+
+.buy_btn{
+	width: 150px;
+	left:1180px;
 }
 
 .a-hovor{

@@ -1,6 +1,7 @@
 package cn.com.mapper;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import cn.com.domain.GoodsPublish;
 
@@ -17,7 +18,13 @@ public interface GoodsPublishMapper {
 
     int updateByPrimaryKey(GoodsPublish record);
     
-    ArrayList<GoodsPublish> selectByTime();
+    
+    
+    
+    //各种搜索
+    int selectGoodsSize(Map<String,String> map);
+    
+    ArrayList<GoodsPublish> selectGoods(Map<String,String> map);
     
     
 }

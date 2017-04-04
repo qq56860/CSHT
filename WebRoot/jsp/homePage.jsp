@@ -29,17 +29,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<jsp:include page="header.jsp" flush="true"/>
     </div>
     
-    <div class="col-sm-2">
+    <div class="col-sm-1">
     	<jsp:include page="left.jsp" flush="true" />
     </div>
     
     
     
-	<div class="tab-content col-sm-10" >
-	 	<div class="tab-pane active" id="list-tab">
-	 		<jsp:include page="goods/list.jsp" flush="true" />
-	 	</div>
+	<div class="col-sm-11" >
+	 	
+	 		<iframe src="/CSHT/homePageList" align="middle" id="list_iframe"  
+						frameborder="0" scrolling="no" 
+						allowTransparency="true" 
+						width="1200"
+						onload = "changeFrameHeight()"
+						>
+			</iframe>
+	 	
 	</div>
+	 
+	 <div class="btn btn-lg mainTones-white navbar-fixed-bottom buy_btn"  id="">
+		 <a href="#">
+			 <button type="button" class="btn btn-default btn-lg mainTones-green">
+	             <span class="glyphicon glyphicon-log-in "></span>&nbsp;&nbsp;
+	             <span class="mainTones-green font-bolder">求购专区</span>
+	         </button>
+         </a>
+	</div>
+	 
+	 
 	  
     <%-- <div>
     	<jsp:include page="goods/list.jsp" flush="true" />
@@ -48,6 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="" id="register" data-toggle="modal" class="a-hovor"></a>
  	<div class="modal fade" id="login_register_forget_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">	
 			<jsp:include page="/jsp/user/login_register_forget.jsp" flush="true"></jsp:include>
+			
 	</div>
     
   </body>

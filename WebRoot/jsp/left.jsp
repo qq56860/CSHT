@@ -35,14 +35,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          	<c:forEach items="${type}" var="type">
 	          		
 	          		
-	          		<li class="dropdown font-bolder "><a href="#" class="mainTones-green">${type.type }</a>
+	          		<li class="dropdown font-bolder "><a href="javascript:void(0)" onclick="list_search('type','${type.id}')" class="mainTones-green">${type.type }</a>
 		          		<ul class="dropdown-menu">
 		          			<c:forEach items="${sub}" var="sub">
 		          				<c:if test="${sub.typeId == type.id }">
-			                		<a href="#" class="mainTones-green"><li class="text-center">${sub.sub }</li></a>
+			                		<a href="javascript:void(0)" onclick="list_search('sub','${sub.id }')" class="mainTones-green"><li class="text-center">${sub.sub }</li></a>
 								</c:if>
 							</c:forEach>
-							<a href="#" class="mainTones-green"><li class="text-center">其他</li></a>
+							<a href="javascript:void(0)" onclick="list_search('type','${type.id}')" class="mainTones-green"><li class="text-center">其他</li></a>
 		              	</ul>
 	          		</li>
 	          		

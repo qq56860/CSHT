@@ -73,12 +73,49 @@ $(function(){
     );
 }
  
- function iFrameHeight() {   
-	 var ifm= window.getElementById("login_iframe");   
-	 var subWeb = window.frames ? window.frames["login_iframe"].document : ifm.contentDocument;   
-	 if(ifm != null && subWeb != null) {
-	    ifm.height = subWeb.body.scrollHeight;
-	    ifm.width = subWeb.body.scrollWidth;
-	 }   
- }   
+ function list_search(search_way,search_content){
+	 if(search_way == "search" ){ 
+		 $("#list_iframe").contents().find("#search_search").val( $("#header_search").val() );
+		 $("#list_iframe").contents().find("#type_search").val( '' );
+		 $("#list_iframe").contents().find("#sub_search").val( '' );
+		 $("#list_iframe").contents().find("#time_collection_search").val( '' );
+		 $("#list_iframe").contents().find("#search_form").submit();
+	 }else if(search_way == "type"){
+		 $("#list_iframe").contents().find("#type_search").val( search_content );
+		 $("#list_iframe").contents().find("#search_search").val( '' );
+		 $("#list_iframe").contents().find("#sub_search").val( '' );
+		 $("#list_iframe").contents().find("#time_collection_search").val( '' );
+		 $("#list_iframe").contents().find("#search_form").submit();
+//		 $("#type_search").val( search_content );		 
+//		 $("#search_search").val('');
+//		 $("#sub_search").val('');
+	 }else if(search_way == "sub"){
+		 $("#list_iframe").contents().find("#sub_search").val( search_content );
+		 $("#list_iframe").contents().find("#search_search").val( '' );
+		 $("#list_iframe").contents().find("#type_search").val( '' );
+		 $("#list_iframe").contents().find("#time_collection_search").val( '' );
+		 $("#list_iframe").contents().find("#search_form").submit();
+	 }else if(search_way == "time_collection"){
+		 $("#time_collection_search").val( $("#time_collection_select option:selected").val() );
+		 $("#search_form").submit();
+	 }else if(search_way == "page"){
+		 $("#page_search").val( search_content );
+		 $("#search_form").submit();
+	 }else{
+		 alert("error");
+	 }
+	 
+} 
+ 
+//iframe 自适应高度
+function changeFrameHeight(){
+	var iframe= document.getElementById("list_iframe"); 
+    var height = iframe.contentWindow.document.documentElement.scrollHeight;  
+    parent.scrollTo(0,0);
+    iframe.height = height; 
+   
+}
+window.onresize=function(){  
+     changeFrameHeight();  
+}
  

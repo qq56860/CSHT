@@ -59,10 +59,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 					</div>
 					<div class="col-md-4 column">
-						<form class="form-horizontal" style="position:absolute;top:30px;"  role="form" action="#">
-							<input type="text" class="form-control input-lg" style="width: 300px; float: left;border-color: #33CC99;" placeholder="搜个什么要买的东东吧！" / >  
+						<form class="form-horizontal" style="position:absolute;top:30px;" role="form" action="javascript:void(0)">
+							<input type="text" id="header_search" class="form-control input-lg" style="width: 300px; float: left;border-color: #33CC99;" placeholder="搜个什么要买的东东吧！" / >  
 		            		<span class="input-group-btn" style="float: left;">  
-		               			<button class="btn btn-info btn-search mainTones-bg-green input-lg font-bolder" >搜 索</button>  
+		               			<button class="btn btn-info btn-search mainTones-bg-green input-lg font-bolder" 
+		               							onclick="list_search('search','')">搜 索</button>  
 		            		</span>  
 						</form>
 					</div>

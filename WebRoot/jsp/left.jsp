@@ -33,8 +33,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          <ul class="nav">
 	          	
 	          	<c:forEach items="${type}" var="type">
-	          		
-	          		
 	          		<li class="dropdown font-bolder "><a href="javascript:void(0)" onclick="list_search('type','${type.id}')" class="mainTones-green">${type.type }</a>
 		          		<ul class="dropdown-menu">
 		          			<c:forEach items="${sub}" var="sub">
@@ -49,18 +47,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          		
 	          	</c:forEach>
 	          
-	            
-	            <!-- <li class="font-bolder"><a href="#" class="mainTones-green">手机</a></li>
-	            <li class="dropdown font-bolder"> <a href="#menu3" class="mainTones-green">电脑</a>
-	              <ul class="dropdown-menu">
-	                <a href="#" class="mainTones-green"><li class="text-center">联想</li></a>
-					<a href="#"><li class="text-center">Menu7</li></a>
-					<a href="#"><li class="text-center">Menu7</li></a>
-	              </ul>
-	            </li> 
-	            <li class="font-bolder"><a href="#" class="mainTones-green ">Menu4</a></li>
-	            <li class="font-bolder"><a href="#" class="mainTones-green ">Menu5</a></li>
-	            <li class="font-bolder"><a href="#" class="mainTones-green ">Menu6</a></li> -->
 	          </ul>
 	        </div>
 		</div>

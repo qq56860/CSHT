@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script src="<%=basePath %>resources/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 	
-	<script src="<%=basePath %>resources/gpEdit.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=basePath %>resources/homePage_list.js" type="text/javascript" charset="utf-8"></script>
   </head>
   
   <body>
@@ -55,26 +55,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<div class="dashed"> 
 				<ul>
+					<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
 					<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
 					<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-					<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-					<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+					<li></li><li></li><li></li><li></li><li></li><li></li><li></li>
 					
 				</ul>
 			</div>
 			
-			
-			
-			<div class="btn btn-lg mainTones-bg-yellow mainTones-white list-publish">
-				<span>我要发布</span>
-			</div>
-			
-			<div class="btn btn-lg mainTones-bg-yellow mainTones-white list-buy">
-				<span>我要求购</span>
-			</div>
-			
 			<br />
-		
 			
 			<div class="row" style="width: 1000px;">
 			
@@ -82,13 +71,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="col-md-4">
 						<div class="thumbnail">
 							<div class="img_div">
-								<a href="/CSHT/goods/detail?id=${publish.id }">
+								<a href="javascript:void(0)" onclick="list_detail(${publish.id })">
 									<img style="width: 299px;height: 299px;" alt="${publish.goodsName }" src="${publish.pic }"/>
 								</a>
 							</div>
 							<br />
 							<div class="caption">
-								<a href="/CSHT/goods/detail?id=${publish.id }" >
+								<a href="javascript:void(0)" onclick="list_detail(${publish.id })">
 									<b class="mainTones-green">${publish.goodsName }</b>
 									<small class="pull-right mainTones-yellow font-bolder">￥${publish.price }</small>
 								</a>

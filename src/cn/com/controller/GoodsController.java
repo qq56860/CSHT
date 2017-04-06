@@ -26,4 +26,16 @@ public class GoodsController {
 		return goodsLogic.detail(request, response);
 	}
 	
+	@RequestMapping(value = "/publish/comment",produces= "text/plain;charset=UTF-8")
+	public ModelAndView publishComment(HttpServletRequest request,HttpServletResponse response){
+		log.info("goods/publish/comment");
+		return goodsLogic.publishComment(request, response);
+	}
+	
+	@RequestMapping(value = "/buy/comment",produces= "text/plain;charset=UTF-8")
+	public ModelAndView buyComment(HttpServletRequest request,HttpServletResponse response){
+		log.info("goods/buy/comment");
+		return goodsLogic.buyComment(request, response);
+	}
+	
 }

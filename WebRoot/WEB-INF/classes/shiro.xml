@@ -63,18 +63,21 @@
 		<property name="securityManager" ref="securityManager"></property>
 		<property name="loginUrl" value="/"></property>
 		<!-- 用户访问未对其授权的资源时，所显示的连接 -->
-		<property name="unauthorizedUrl" value="/"></property>
+		<property name="unauthorizedUrl" value="baidu"></property>
 		
 		<property name="filterChainDefinitions">
 			<value>
 				/=anon
 				/jsp/user/login_logined.jsp=anon
+				/jsp/goods/commentRefresh.jsp=anon
 				
 				/homePage=anon
 				/homePageList=anon
 				/user/login=anon
 				/user/reg=anon
 				/goods/detail=anon
+				/buyPage=anon
+				
 				/user/info=anon
 				
 				

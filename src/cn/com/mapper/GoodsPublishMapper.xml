@@ -31,9 +31,9 @@
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
-    <include refid="Base_Column_List" />
-    from goods_publish
-    where id = #{id,jdbcType=VARCHAR}
+    u.nick_name,p.*
+    from goods_publish p LEFT JOIN `user` u ON p.user_id = u.id 
+    where p.id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from goods_publish

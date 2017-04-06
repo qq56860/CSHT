@@ -35,4 +35,11 @@ public class UserController {
 		return userlogic.reg(request, response);
 	}
 	
+	@RequestMapping(value = "/logOut",produces= "text/plain;charset=UTF-8")
+	public String logOut(HttpServletRequest request,HttpServletResponse response){
+		log.info("logOut");
+		return userlogic.logOut(request, response);
+	}
+	
+	
 }

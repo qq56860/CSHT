@@ -45,6 +45,14 @@ public class HomePageLogic {
 		ModelMap modelMap = new ModelMap();
 		model.setViewName("/homePage");
 		
+		String forwordSearch = request.getParameter("forwordSearch");
+		String forwordType = request.getParameter("forwordType");
+		String forwordSub = request.getParameter("forwordSub");
+		modelMap.put("forwordSearch", forwordSearch);
+		modelMap.put("forwordType", forwordType);
+		modelMap.put("forwordSub", forwordSub);
+		
+		
 		ArrayList<GoodsType> type = goodsTypeMapper.selectAll();
 		ArrayList<GoodsSub> sub = goodsSubMapper.selectAll();
 		modelMap.put("type", type);
@@ -70,7 +78,7 @@ public class HomePageLogic {
 		}
 		
 		ModelAndView model = new ModelAndView();
-		model.setViewName("/goods/list");
+		model.setViewName("list");
 		
 		ModelMap modelMap = goodsSearch(time_collection,type,sub,search,Integer.valueOf(pageNum));
 		

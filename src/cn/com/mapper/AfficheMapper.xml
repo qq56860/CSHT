@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.mapper.AfficheMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.domain.Affiche" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="adder_id" property="adderId" jdbcType="INTEGER" />
+    <result column="if_stick" property="ifStick" jdbcType="BIT" />
+    <result column="if_hide" property="ifHide" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, content, create_time, adder_id, if_stick, if_hide
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from affiche
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from affiche
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.domain.Affiche" >
+    insert into affiche (id, title, content, 
+      create_time, adder_id, if_stick, 
+      if_hide)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{adderId,jdbcType=INTEGER}, #{ifStick,jdbcType=BIT}, 
+      #{ifHide,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.domain.Affiche" >
+    insert into affiche
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="adderId != null" >
+        adder_id,
+      </if>
+      <if test="ifStick != null" >
+        if_stick,
+      </if>
+      <if test="ifHide != null" >
+        if_hide,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="adderId != null" >
+        #{adderId,jdbcType=INTEGER},
+      </if>
+      <if test="ifStick != null" >
+        #{ifStick,jdbcType=BIT},
+      </if>
+      <if test="ifHide != null" >
+        #{ifHide,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.domain.Affiche" >
+    update affiche
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="adderId != null" >
+        adder_id = #{adderId,jdbcType=INTEGER},
+      </if>
+      <if test="ifStick != null" >
+        if_stick = #{ifStick,jdbcType=BIT},
+      </if>
+      <if test="ifHide != null" >
+        if_hide = #{ifHide,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.domain.Affiche" >
+    update affiche
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      adder_id = #{adderId,jdbcType=INTEGER},
+      if_stick = #{ifStick,jdbcType=BIT},
+      if_hide = #{ifHide,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

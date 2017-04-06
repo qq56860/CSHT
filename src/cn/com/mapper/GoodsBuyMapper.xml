@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.mapper.GoodsBuyMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.domain.GoodsBuy" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="sub_id" property="subId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_content" property="goodsContent" jdbcType="VARCHAR" />
+    <result column="trade_place" property="tradePlace" jdbcType="VARCHAR" />
+    <result column="wish_price" property="wishPrice" jdbcType="REAL" />
+    <result column="is_buy" property="isBuy" jdbcType="BIT" />
+    <result column="contact_me" property="contactMe" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="contact_qq" property="contactQq" jdbcType="VARCHAR" />
+    <result column="contact_we_chat" property="contactWeChat" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, type_id, sub_id, goods_name, goods_content, trade_place, wish_price, 
+    is_buy, contact_me, create_time, contact_phone, contact_qq, contact_we_chat
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_buy
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from goods_buy
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.com.domain.GoodsBuy" >
+    insert into goods_buy (id, user_id, type_id, 
+      sub_id, goods_name, goods_content, 
+      trade_place, wish_price, is_buy, 
+      contact_me, create_time, contact_phone, 
+      contact_qq, contact_we_chat)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
+      #{subId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsContent,jdbcType=VARCHAR}, 
+      #{tradePlace,jdbcType=VARCHAR}, #{wishPrice,jdbcType=REAL}, #{isBuy,jdbcType=BIT}, 
+      #{contactMe,jdbcType=BIT}, #{createTime,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{contactQq,jdbcType=VARCHAR}, #{contactWeChat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.domain.GoodsBuy" >
+    insert into goods_buy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="subId != null" >
+        sub_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsContent != null" >
+        goods_content,
+      </if>
+      <if test="tradePlace != null" >
+        trade_place,
+      </if>
+      <if test="wishPrice != null" >
+        wish_price,
+      </if>
+      <if test="isBuy != null" >
+        is_buy,
+      </if>
+      <if test="contactMe != null" >
+        contact_me,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="contactQq != null" >
+        contact_qq,
+      </if>
+      <if test="contactWeChat != null" >
+        contact_we_chat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="subId != null" >
+        #{subId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsContent != null" >
+        #{goodsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePlace != null" >
+        #{tradePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="wishPrice != null" >
+        #{wishPrice,jdbcType=REAL},
+      </if>
+      <if test="isBuy != null" >
+        #{isBuy,jdbcType=BIT},
+      </if>
+      <if test="contactMe != null" >
+        #{contactMe,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWeChat != null" >
+        #{contactWeChat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.domain.GoodsBuy" >
+    update goods_buy
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="subId != null" >
+        sub_id = #{subId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsContent != null" >
+        goods_content = #{goodsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePlace != null" >
+        trade_place = #{tradePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="wishPrice != null" >
+        wish_price = #{wishPrice,jdbcType=REAL},
+      </if>
+      <if test="isBuy != null" >
+        is_buy = #{isBuy,jdbcType=BIT},
+      </if>
+      <if test="contactMe != null" >
+        contact_me = #{contactMe,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        contact_qq = #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWeChat != null" >
+        contact_we_chat = #{contactWeChat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.domain.GoodsBuy" >
+    update goods_buy
+    set user_id = #{userId,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      sub_id = #{subId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_content = #{goodsContent,jdbcType=VARCHAR},
+      trade_place = #{tradePlace,jdbcType=VARCHAR},
+      wish_price = #{wishPrice,jdbcType=REAL},
+      is_buy = #{isBuy,jdbcType=BIT},
+      contact_me = #{contactMe,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      contact_qq = #{contactQq,jdbcType=VARCHAR},
+      contact_we_chat = #{contactWeChat,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

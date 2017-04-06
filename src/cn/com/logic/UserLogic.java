@@ -66,10 +66,7 @@ public class UserLogic {
 			return obj.toString();
 		}else{
 			return JSONObject.fromObject(ResultModel.responseFaild("权限不足")).toString();
-		}
-		
-		
-				
+		}		
 //		User user = userMapper.selectByAccount(account);
 //		if(user == null){
 //			log.info("用户不存在");
@@ -121,10 +118,13 @@ public class UserLogic {
 		return "redirect:/user/login?account="+user.getEmail()+"&password="+user.getPassword();
 	}
 	
-	
-	
-	
-	
+	public String logOut(HttpServletRequest request,HttpServletResponse response){
+		
+		Subject subject = SecurityUtils.getSubject();
+		subject.logout();
+		
+		return "redirect:/homePage";
+	}
 	
 	
 	

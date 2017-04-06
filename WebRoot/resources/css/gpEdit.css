@@ -72,3 +72,24 @@ a:HOVER {
 	text-decoration: none;
 }
 
+.center {  
+    width: auto;  
+    display: table;  
+    margin-left: auto;  
+    margin-right: auto;  
+} 
+
+.list-publish{
+	font-size: 30px;
+	position:absolute;
+	left: 1150px;
+	top:200px;
+}
+
+.list-buy{
+	font-size: 30px;
+	position: absolute;;
+	left: 1150px;
+	top:300px;
+}
+

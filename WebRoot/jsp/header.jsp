@@ -23,70 +23,67 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/bootstrap-theme.css"/>
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/bootstrap-theme.min.css"/>
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/bootstrap.css"/>
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/gpEdit.css" />
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/header.css"/>
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/left.css"/>
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/list.css"/>
 	
-	<script src="<%=basePath %>resources/jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
-	
-	
-	<script src="<%=basePath %>resources/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
-	
-	<script src="<%=basePath %>resources/gpEdit.js" type="text/javascript" charset="utf-8"></script>
 	
   </head>
   
   <body>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  
+    <nav class="navbar navbar-default navbar-fixed-top"  role="navigation">
 			<div id="header">
-			
-				<div class="header-hight">
-					<div class="row clearfix">
-					<div class="col-md-1 column">
-					</div>
-					<div class="col-md-3 column">
-						<a href="#">
-						<div class="page-header  para-middle">
+				<div class="header-hight-width ">
+						<a href="/CSHT/homePage" style="position:relative;top:-5px;left:100px;">
 							<h1 > 
-								<label class="mainTones-green">八一农大2货网</label><br/> <small class="mainTones-yellow font-bolder">农大人自己的网站</small>
+								<span class="mainTones-green">八一农大2货网</span><br/> 
+								<small class="mainTones-yellow font-bolder">&nbsp;&nbsp; 农大人自己的网站</small>
 							</h1>
-						</div>
 						</a>
-					</div>
-					<div class="col-md-4 column">
-						<form class="form-horizontal" style="position:absolute;top:30px;" role="form" action="javascript:void(0)">
-							<input type="text" id="header_search" class="form-control input-lg" style="width: 300px; float: left;border-color: #33CC99;" placeholder="搜个什么要买的东东吧！" / >  
-		            		<span class="input-group-btn" style="float: left;">  
+						<form class="form-horizontal" id="search_form" style="position:absolute ;top:20px;left:450px;" 
+											role="form" action="/CSHT/homePage">
+							<span class="input-group-btn">
+								<input type="text" name="forwordSearch" id="header_search" class="form-control input-lg" 
+									style="width: 300px;float:left ;border-color: #33CC99;" placeholder="搜个什么要买的东东吧！" />  
+		            		  
 		               			<button class="btn btn-info btn-search mainTones-bg-green input-lg font-bolder" 
-		               							onclick="list_search('search','')">搜 索</button>  
+		               							onclick="goods_search()">搜 索</button>
 		            		</span>  
 						</form>
+						
+					<div class="logined_div">	
+						<c:if test="${user == null }">
+						
+							 <button type="button"   class="btn btn-lg mainTones-bg-white font-bolder">
+							 <a href="" id="model_login" data-toggle="modal" class="a-hovor mainTones-green">登录</a>
+							 </button> 
+							 <button type="button" style=""  class="btn btn-lg mainTones-bg-white font-bolder">
+							 <a href="" id="model_register" data-toggle="modal" class="a-hovor mainTones-green">注册</a>
+							 </button>
+								
+						</c:if>
+						<c:if test="${user != null }">				
+							<div class="dropdown">
+								<div class="header-dropdown">
+									<button type="button" class="btn btn-default btn-lg mainTones-bg-white font-bolder mainTones-green">
+										<span class="glyphicon glyphicon-user"></span>
+										&nbsp;&nbsp;
+										<span class="mainTones-yellow">${user.nickName }</span>
+									</button>
+									
+									 <ul class="header-dropdown-menu">
+						                <a href="#" class="mainTones-green"><li class="btn">个人中心</li></a>
+										<a href="#" class="mainTones-green"><li class="btn">我的收藏</li></a>
+										<a href="/CSHT/user/logOut" class="mainTones-green"><li class="btn">退出登录</li></a>
+						              </ul>
+						           </div>   
+							 </div>
+						</c:if>
 					</div>
-					
-					<div class="col-md-2 column">
-						<iframe src="/CSHT/jsp/user/login_logined.jsp" align="middle" id="login_iframe"  
-						frameborder="0" scrolling="no" 
-						marginheight="0" marginwidth="0" 
-						allowTransparency="true" 
-						height="110"
-						>
-						</iframe>
-					</div>
-					
-					
+						
 				</div>
 			</div>	
 			<div class="level-gray" style="height: 1px; width: auto;"></div>	
-			
-			
 		</div>	
 	</nav>
-	
-	
+
   </body>
 </html>

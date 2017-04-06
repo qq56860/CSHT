@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.mapper.PublishReplyMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.domain.PublishReply" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="comment_id" property="commentId" jdbcType="VARCHAR" />
+    <result column="replay_id" property="replayId" jdbcType="VARCHAR" />
+    <result column="replay" property="replay" jdbcType="VARCHAR" />
+    <result column="replayer_id" property="replayerId" jdbcType="VARCHAR" />
+    <result column="replay_time" property="replayTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, comment_id, replay_id, replay, replayer_id, replay_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from publish_reply
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from publish_reply
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.com.domain.PublishReply" >
+    insert into publish_reply (id, comment_id, replay_id, 
+      replay, replayer_id, replay_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{commentId,jdbcType=VARCHAR}, #{replayId,jdbcType=VARCHAR}, 
+      #{replay,jdbcType=VARCHAR}, #{replayerId,jdbcType=VARCHAR}, #{replayTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.domain.PublishReply" >
+    insert into publish_reply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="replayId != null" >
+        replay_id,
+      </if>
+      <if test="replay != null" >
+        replay,
+      </if>
+      <if test="replayerId != null" >
+        replayer_id,
+      </if>
+      <if test="replayTime != null" >
+        replay_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="commentId != null" >
+        #{commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="replayId != null" >
+        #{replayId,jdbcType=VARCHAR},
+      </if>
+      <if test="replay != null" >
+        #{replay,jdbcType=VARCHAR},
+      </if>
+      <if test="replayerId != null" >
+        #{replayerId,jdbcType=VARCHAR},
+      </if>
+      <if test="replayTime != null" >
+        #{replayTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.domain.PublishReply" >
+    update publish_reply
+    <set >
+      <if test="commentId != null" >
+        comment_id = #{commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="replayId != null" >
+        replay_id = #{replayId,jdbcType=VARCHAR},
+      </if>
+      <if test="replay != null" >
+        replay = #{replay,jdbcType=VARCHAR},
+      </if>
+      <if test="replayerId != null" >
+        replayer_id = #{replayerId,jdbcType=VARCHAR},
+      </if>
+      <if test="replayTime != null" >
+        replay_time = #{replayTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.domain.PublishReply" >
+    update publish_reply
+    set comment_id = #{commentId,jdbcType=VARCHAR},
+      replay_id = #{replayId,jdbcType=VARCHAR},
+      replay = #{replay,jdbcType=VARCHAR},
+      replayer_id = #{replayerId,jdbcType=VARCHAR},
+      replay_time = #{replayTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

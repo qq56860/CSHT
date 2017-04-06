@@ -20,6 +20,7 @@
 
 .dashed{
 	position: relative;
+	left:90px;
 }
 
 .dashed li{
@@ -31,19 +32,6 @@
 	float: left;
 	position: relative;
 	margin-left: 10px;
-}
-
-.list-publish{
-	font-size: 30px;
-	position:absolute;
-	left: 1000px;
-}
-
-.list-buy{
-	font-size: 30px;
-	position: absolute;;
-	left: 1000px;
-	top:200px;
 }
 
 .img_div{

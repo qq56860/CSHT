@@ -97,6 +97,13 @@
     from goods_sub
   </select>
   
+  <select id="selectByTypeId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    *
+    from goods_sub
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </select>
+  
   
   
 </mapper>

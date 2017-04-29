@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.mapper.HotSearchMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.domain.HotSearch" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="search_text" property="searchText" jdbcType="VARCHAR" />
+    <result column="hot" property="hot" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, search_text, hot
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hot_search
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hot_search
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.com.domain.HotSearch" >
+    insert into hot_search (id, search_text, hot
+      )
+    values (#{id,jdbcType=VARCHAR}, #{searchText,jdbcType=VARCHAR}, #{hot,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.domain.HotSearch" >
+    insert into hot_search
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="searchText != null" >
+        search_text,
+      </if>
+      <if test="hot != null" >
+        hot,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="searchText != null" >
+        #{searchText,jdbcType=VARCHAR},
+      </if>
+      <if test="hot != null" >
+        #{hot,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.domain.HotSearch" >
+    update hot_search
+    <set >
+      <if test="searchText != null" >
+        search_text = #{searchText,jdbcType=VARCHAR},
+      </if>
+      <if test="hot != null" >
+        hot = #{hot,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.domain.HotSearch" >
+    update hot_search
+    set search_text = #{searchText,jdbcType=VARCHAR},
+      hot = #{hot,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByText" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hot_search
+    where search_text = #{text,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByKey5" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hot_search
+    where search_text like CONCAT('%',#{key,jdbcType=VARCHAR},'%' )
+    ORDER BY hot DESC
+	LIMIT 0,5;
+  </select>
+  
+</mapper>

@@ -1,41 +1,57 @@
+.mainTones-border-green{
+	border:1px solid #44C1A5;
+}
+
+.mainTones-border-yellow{
+	border:1px solid #FFC555;
+}
+
+.mainTones-border-gray{
+	border:1px solid #CCCCCC;
+}
+
 .mainTones-green{
-	color: #33CC99;
-	font-family: "微软雅黑";
+	color: #44C1A5;
 }
 
 .mainTones-gray{
 	color: #CCCCCC;
-	font-family: "微软雅黑";
 }
 
 .mainTones-green:hover{
 	color: #33AA99;
-	font-family: "微软雅黑";
 }
+
+.mainTones-bg-gray{
+	background-color: #CCCCCC;
+}
+
 .mainTones-bg-green{
-	background-color: #33CC99;
+	background-color: #44C1A5;
 }
 
 .mainTones-bg-green:hover{
-	background-color: #33BB99;
+	background-color: #44AAAA;
 }
 
 .mainTones-yellow{
-	color: #FFFF00;
-	font-family: "微软雅黑";
+	color: #FFC555;
 }
+
+.mainTones-yellow:hover{
+	color: #FFC555;
+}
+
 .mainTones-bg-yellow{
-	background-color: #FFFF00;
+	background-color: #FFC555;
 }
 
 .mainTones-white{
 	color: white;
-	font-family: "微软雅黑";
 }
 
 .mainTones-white:hover{
 	color: white;
-	font-family: "微软雅黑";
 }
 
 .mainTones-bg-white{
@@ -53,7 +69,7 @@
 
 .buy_btn{
 	width: 150px;
-	left:1180px;
+	left:1200px;
 }
 
 .a-hovor{
@@ -67,10 +83,27 @@
 a{
 	text-decoration: none;
 }
-
 a:HOVER {
 	text-decoration: none;
 }
+a:visited{
+	text-decoration: none;
+}
+a:link{
+	text-decoration: none;
+}
+
+.btn:focus{
+	color: #44C1A5;
+	outline: none;
+}
+.btn:ACTIVE{
+	color: #44C1A5;
+}
+input:focus{
+	outline: none;
+}
+
 
 .center {  
     width: auto;  
@@ -82,14 +115,36 @@ a:HOVER {
 .list-publish{
 	font-size: 30px;
 	position:absolute;
-	left: 1150px;
+	left: 1200px;
 	top:200px;
 }
 
 .list-buy{
 	font-size: 30px;
-	position: absolute;;
-	left: 1150px;
+	position: absolute;
+	left: 1200px;
 	top:300px;
 }
 
+.header-bg-color{
+	background-color:  #f8f8f8;
+}
+
+.header-border-color{
+	border-color: #e7e7e7
+}
+
+.popover-inner {
+  padding: 3px;
+  width: 600px;
+  height: 300px;
+  overflow: hidden;
+  background: #000000;
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}

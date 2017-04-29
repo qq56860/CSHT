@@ -10,8 +10,18 @@ public class PublishComment {
     private String content;
 
     private String time;
+    
+    private User user;
 
-    public String getId() {
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getId() {
         return id;
     }
 

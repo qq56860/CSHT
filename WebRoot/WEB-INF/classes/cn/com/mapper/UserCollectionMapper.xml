@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.mapper.UserCollectionMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.domain.UserCollection" >
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <collection property="goodsPublish" ofType="cn.com.domain.GoodsPublish" column="id">  
+            <id column="id" property="id" jdbcType="VARCHAR" />
+		    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+		    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+		    <result column="sub_id" property="subId" jdbcType="INTEGER" />
+		    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+		    <result column="goods_content" property="goodsContent" jdbcType="VARCHAR" />
+		    <result column="pic" property="pic" jdbcType="VARCHAR" />
+		    <result column="trade_place" property="tradePlace" jdbcType="VARCHAR" />
+		    <result column="price" property="price" jdbcType="REAL" />
+		    <result column="is_bargain" property="isBargain" jdbcType="BIT" />
+		    <result column="collection_num" property="collectionNum" jdbcType="INTEGER" />
+		    <result column="is_buyed" property="isBuyed" jdbcType="BIT" />
+		    <result column="contact_method" property="contactMethod" jdbcType="VARCHAR" />
+		    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+		    <result column="visited" property="visited" jdbcType="INTEGER" />
+    </collection> 
+  </resultMap>
+  <insert id="insert" parameterType="cn.com.domain.UserCollection" >
+    insert into user_collection (user_id, goods_id)
+    values (#{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR})
+    
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.domain.UserCollection" >
+    insert into user_collection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectByGoodsidAndUserid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+   	*
+    from user_collection
+    where user_id = #{userid,jdbcType=VARCHAR} and goods_id  = #{goodsid,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByGoodsid" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select 
+   	COUNT(user_id)
+    from user_collection
+    where goods_id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByUseridAndGoodsid" parameterType="java.util.Map">
+  	delete
+  	from user_collection
+  	where user_id = #{userid,jdbcType=VARCHAR}
+  	and goods_id = #{goodsid,jdbcType=VARCHAR}
+  </delete>
+  
+  <select id="selectByUserid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+   	c.*,p.*
+    from user_collection c inner join goods_publish p on c.goods_id = p.id
+    where c.user_id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  
+</mapper>

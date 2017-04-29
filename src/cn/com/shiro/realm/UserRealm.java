@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cn.com.domain.User;
 import cn.com.mapper.UserMapper;
 import cn.com.shiro.util.UsernamePasswordUsertypeToken;
+import cn.com.util.IDGenerator;
 
 public class UserRealm extends AuthorizingRealm {
 	
@@ -61,7 +62,13 @@ public class UserRealm extends AuthorizingRealm {
 			throw new IncorrectCredentialsException();
 		}
 		
-		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(username, password .toCharArray(),getName());
+		String SaveToken = IDGenerator.getId();
+		user.setToken(SaveToken);
+		userMapper.updateByPrimaryKey(user);
+		
+		String pri = username+","+SaveToken;
+		
+		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(pri, password .toCharArray(),getName());
 		return info; 
 	}
 }

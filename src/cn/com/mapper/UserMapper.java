@@ -1,5 +1,7 @@
 package cn.com.mapper;
 
+import java.util.Map;
+
 import cn.com.domain.User;
 
 public interface UserMapper {
@@ -16,4 +18,10 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     
     User selectByAccount(String id);
+    
+    User selectUser(Map<String, String> map);
+    
+    int updateByEmailOrPhone(Map<String, String> map);
+    
+    
 }

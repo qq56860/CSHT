@@ -7,6 +7,8 @@ public class GoodsPublish {
 
     private Integer typeId;
 
+    private Integer subId;
+
     private String goodsName;
 
     private String goodsContent;
@@ -23,18 +25,16 @@ public class GoodsPublish {
 
     private Boolean isBuyed;
 
-    private Boolean contactMe;
+    private String contactMethod;
 
     private String createTime;
-
-    private String contactPhone;
-
-    private String contactQq;
-
-    private String contactWeChat;
     
-    private User User;
+    private int visited;
+    
+    private Boolean isCollection;
 
+	private User User;
+    
 	public User getUser() {
 		return User;
 	}
@@ -42,8 +42,16 @@ public class GoodsPublish {
 	public void setUser(User user) {
 		User = user;
 	}
+	
+    public Boolean getIsCollection() {
+		return isCollection;
+	}
 
-	public String getId() {
+	public void setIsCollection(Boolean isCollection) {
+		this.isCollection = isCollection;
+	}
+
+    public String getId() {
         return id;
     }
 
@@ -65,6 +73,14 @@ public class GoodsPublish {
 
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;
+    }
+
+    public Integer getSubId() {
+        return subId;
+    }
+
+    public void setSubId(Integer subId) {
+        this.subId = subId;
     }
 
     public String getGoodsName() {
@@ -131,12 +147,12 @@ public class GoodsPublish {
         this.isBuyed = isBuyed;
     }
 
-    public Boolean getContactMe() {
-        return contactMe;
+    public String getContactMethod() {
+        return contactMethod;
     }
 
-    public void setContactMe(Boolean contactMe) {
-        this.contactMe = contactMe;
+    public void setContactMethod(String contactMethod) {
+        this.contactMethod = contactMethod;
     }
 
     public String getCreateTime() {
@@ -147,27 +163,11 @@ public class GoodsPublish {
         this.createTime = createTime;
     }
 
-    public String getContactPhone() {
-        return contactPhone;
+    public Integer getVisited() {
+        return visited;
     }
 
-    public void setContactPhone(String contactPhone) {
-        this.contactPhone = contactPhone;
-    }
-
-    public String getContactQq() {
-        return contactQq;
-    }
-
-    public void setContactQq(String contactQq) {
-        this.contactQq = contactQq;
-    }
-
-    public String getContactWeChat() {
-        return contactWeChat;
-    }
-
-    public void setContactWeChat(String contactWeChat) {
-        this.contactWeChat = contactWeChat;
+    public void setVisited(Integer visited) {
+        this.visited = visited;
     }
 }

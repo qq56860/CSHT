@@ -1,5 +1,7 @@
 package cn.com.mapper;
 
+import java.util.ArrayList;
+
 import cn.com.domain.PublishReply;
 
 public interface PublishReplyMapper {
@@ -14,4 +16,7 @@ public interface PublishReplyMapper {
     int updateByPrimaryKeySelective(PublishReply record);
 
     int updateByPrimaryKey(PublishReply record);
+    
+    ArrayList<PublishReply> selectByCommentId(String commentId);
+    
 }

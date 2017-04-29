@@ -19,15 +19,19 @@ public class GoodsBuy {
 
     private Boolean isBuy;
 
-    private Boolean contactMe;
+    private String contactMethod;
 
     private String createTime;
+    
+    private User User;
 
-    private String contactPhone;
+	public User getUser() {
+		return User;
+	}
 
-    private String contactQq;
-
-    private String contactWeChat;
+	public void setUser(User user) {
+		User = user;
+	}
 
     public String getId() {
         return id;
@@ -101,12 +105,12 @@ public class GoodsBuy {
         this.isBuy = isBuy;
     }
 
-    public Boolean getContactMe() {
-        return contactMe;
+    public String getContactMethod() {
+        return contactMethod;
     }
 
-    public void setContactMe(Boolean contactMe) {
-        this.contactMe = contactMe;
+    public void setContactMethod(String contactMethod) {
+        this.contactMethod = contactMethod;
     }
 
     public String getCreateTime() {
@@ -115,29 +119,5 @@ public class GoodsBuy {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
-    }
-
-    public String getContactPhone() {
-        return contactPhone;
-    }
-
-    public void setContactPhone(String contactPhone) {
-        this.contactPhone = contactPhone;
-    }
-
-    public String getContactQq() {
-        return contactQq;
-    }
-
-    public void setContactQq(String contactQq) {
-        this.contactQq = contactQq;
-    }
-
-    public String getContactWeChat() {
-        return contactWeChat;
-    }
-
-    public void setContactWeChat(String contactWeChat) {
-        this.contactWeChat = contactWeChat;
     }
 }

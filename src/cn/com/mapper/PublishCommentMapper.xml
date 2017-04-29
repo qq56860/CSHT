@@ -7,6 +7,11 @@
     <result column="observer_id" property="observerId" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="time" property="time" jdbcType="VARCHAR" />
+    <association property="user" javaType="cn.com.domain.User">  
+            <id column="id" property="id" jdbcType="VARCHAR" />  
+            <result column="nick_name" property="nickName" jdbcType="VARCHAR" /> 
+            <result column="pic" property="pic" jdbcType="VARCHAR" /> 
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, goods_id, observer_id, content, time
@@ -90,4 +95,14 @@
       time = #{time,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
+  
+  <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    u.nick_name,u.pic,c.*
+    from publish_comment c inner join `user` u  on c.observer_id=u.id
+    where c.goods_id = #{goodsId,jdbcType=VARCHAR}
+  </select>
+  
+  
 </mapper>

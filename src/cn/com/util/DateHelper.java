@@ -1030,9 +1030,40 @@ public class DateHelper {
 		}
 		return str;
 	}
+	//字符拆分方法
+	private static String splitString(String str,String n){   
+		String st[]=str.split(n);   
+		str="";    
+		for(int i=0;i<st.length;i++)   
+		{    
+			str=str+st[i];   
+		}    
+		return str;   
+	}
+	/**
+	 * 将yyyy-MM-dd HH:mm:ss格式的字符串转换为yyyyMMddHHmmss格式
+	 * @param time:yyyyMMddHHmmss
+	 * @param timeStr
+	 * @return
+	 */
+	public static String getyyyyMMddHHmmss(String time){           
+		String now;        
+		time=          
+		now=splitString(time,"\\:");     
+		time=splitString(now,"/");    
+		now=splitString(time," ");         
+		return now;   
+	}
+	
+	
+	
+	
 	
 	public static void main(String[] args) {
 		String ss = dfformat.format(new Date());
 		System.out.print(ss);
 	}
+	
+	
+	
 }

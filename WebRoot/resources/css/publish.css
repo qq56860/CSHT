@@ -1,0 +1,59 @@
+.imgbox,.imgboxDefault{	
+	position:relative;
+	top:-20px;
+    float: left;
+    margin-right: 20px;
+    margin-top: 20px;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 1px solid gray;
+    overflow: hidden;
+}
+.imgnum{
+    left: 0px;
+    top: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+.imgnum input {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+}
+.imgnum img {
+    width: 100%;
+    height: 100%;
+}
+.closePic {
+    color: red;
+    position: absolute;
+    left: 40px;
+    top: -2px;
+    display: none;
+    cursor:pointer;
+}
+/* ------------------------------ */
+.userPic{	
+	position:relative;
+	top:0px;
+    float: left;
+    margin-right: 20px;
+    margin-top: 20px;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border: 1px solid gray;
+    overflow: hidden;
+}
+.userClosePic {
+    color: red;
+    position: absolute;
+    left: 70px;
+    top: -2px;
+    display: none;
+    cursor:pointer;
+}
+
+

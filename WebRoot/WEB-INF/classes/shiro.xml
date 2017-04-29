@@ -3,30 +3,42 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
-
-	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
-
+	
+	<!-- 会话Cookie模板 -->
+	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">  
+	    <constructor-arg value="rememberMe"/>  
+	    <property name="httpOnly" value="true"/>  
+	    <property name="maxAge" value="604800"/><!-- 7天 单位：秒-->  
+	</bean> 
+	
+	<!-- rememberMe管理器 -->  
+	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">  
+	    <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('5AvVhmFLUs1KTA2Kprsdag==')}"/>  
+	    <property name="cookie" ref="rememberMeCookie"/>  
+	</bean>  
+	
 	<!-- 缓存管理 -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"></bean>
-
-	<bean id="jdbcRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
-	    <!-- 密码加密 -->
+	
+	<!-- <bean id="jdbcRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
+	    密码加密
 		<property name="permissionsLookupEnabled" value="true"></property>
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="authenticationQuery" value="SELECT passwd password from t_ss_sys_user where user_name=?"></property>
 		<property name="userRolesQuery" value="select r.role_code role_name from t_ss_sys_user_role r,t_ss_sys_user u where r.user_id=u.id and u.user_name=?"/>
 		<property name="permissionsQuery" value="SELECT menu_id permission_name from t_ss_sys_role_menu where role_code= ?"/>
-	</bean>
+	</bean> -->
 	
+	
+	<!-- 匹配密码 -->
+	<!-- 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 -->
+	<!-- <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.Sha256CredentialsMatcher">
+		
+	</bean> -->
 	<bean id="userRealm" class="cn.com.shiro.realm.UserRealm">
-		<!-- 匹配密码 -->
-		<!-- 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 -->
-		<!-- <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.Sha256CredentialsMatcher"></bean> -->
+		<!-- <property name="credentialsMatcher" ref="credentialsMatcher"/> -->
 	</bean>
 	<bean id="adminRealm" class="cn.com.shiro.realm.AdminRealm">
-		<!-- 匹配密码 -->
-		<!-- 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 -->
-		<!-- <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.Sha256CredentialsMatcher"></bean> -->
 	</bean>
 	
 	 <!--多个realm 的集中管理  -->
@@ -55,6 +67,7 @@
             </list>
         </property>
 		<property name="cacheManager" ref="cacheManager"></property>
+		<property name="rememberMeManager" ref="rememberMeManager"></property>
 	</bean>
 	
 	
@@ -68,22 +81,32 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/=anon
-				/jsp/user/login_logined.jsp=anon
-				/jsp/goods/commentRefresh.jsp=anon
 				
 				/homePage=anon
 				/homePageList=anon
 				/user/login=anon
 				/user/reg=anon
 				/goods/detail=anon
+				/goods/hotSearch=anon
 				/buyPage=anon
+				/user/InfoRepeat=anon
+				/code/getCode=anon
+				/code/getFindCode=anon
+				/user/findPassword=anon
+				/code/getVerifyCode=anon
 				
-				/user/info=anon
+				
+				/jsp/util/loginCode.jsp=anon
+				
 				
 				
 				/resources/**=anon
-				/** = authc
+				/** = user
 			</value>
 		</property>
 	</bean>
+	
+	<!-- Shiro生命周期处理器-->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+	
 </beans>

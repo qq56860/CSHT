@@ -23,24 +23,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>resources/css/left.css"/>
+	
   </head>
   
-  <body>
+  <body style="z-index:1;">
     
 	<div class="left">
 	        <div class="left-position">
 	          <ul class="nav">
 	          	
 	          	<c:forEach items="${type}" var="type">
-	          		<li class="dropdown font-bolder "><a href="javascript:void(0)" onclick="list_search('type','${type.id}')" class="mainTones-green">${type.type }</a>
-		          		<ul class="dropdown-menu">
+	          		<li class="dropdown font-bolder text-center">
+		          		<a href="/CSHT/homePage?forwordType=${type.id }" class="mainTones-green">
+		          			<span class="">${type.type }</span> 
+		          		</a>
+		          		<ul class="dropdown-menu dropdown-menu-position">
 		          			<c:forEach items="${sub}" var="sub">
 		          				<c:if test="${sub.typeId == type.id }">
-			                		<a href="javascript:void(0)" onclick="list_search('sub','${sub.id }')" class="mainTones-green"><li class="text-center">${sub.sub }</li></a>
+			                		<a href="/CSHT/homePage?forwordSub=${sub.id }">
+			                			<li class="text-center">
+			                			<span class="btn btn-default btn-sm mainTones-green">${sub.sub }</span> 
+			                			</li>
+			                		</a>
 								</c:if>
 							</c:forEach>
-							<a href="javascript:void(0)" onclick="list_search('type','${type.id}')" class="mainTones-green"><li class="text-center">其他</li></a>
 		              	</ul>
 	          		</li>
 	          		

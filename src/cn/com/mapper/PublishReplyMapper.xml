@@ -8,6 +8,11 @@
     <result column="replay" property="replay" jdbcType="VARCHAR" />
     <result column="replayer_id" property="replayerId" jdbcType="VARCHAR" />
     <result column="replay_time" property="replayTime" jdbcType="VARCHAR" />
+    <association property="user" javaType="cn.com.domain.User">  
+            <id column="id" property="id" jdbcType="VARCHAR" />  
+            <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+            <result column="pic" property="pic" jdbcType="VARCHAR" />  
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, comment_id, replay_id, replay, replayer_id, replay_time
@@ -103,4 +108,14 @@
       replay_time = #{replayTime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
+  
+  <select id="selectByCommentId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    u.nick_name,u.pic,r.*
+    from publish_reply r inner join `user` u  on r.replayer_id = u.id
+    where r.comment_id = #{commentId,jdbcType=VARCHAR}
+  </select>
+  
+  
 </mapper>

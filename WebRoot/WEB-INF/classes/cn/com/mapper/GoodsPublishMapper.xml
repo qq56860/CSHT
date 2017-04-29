@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="sub_id" property="subId" jdbcType="INTEGER" />
     <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
     <result column="goods_content" property="goodsContent" jdbcType="VARCHAR" />
     <result column="pic" property="pic" jdbcType="VARCHAR" />
@@ -13,26 +14,24 @@
     <result column="is_bargain" property="isBargain" jdbcType="BIT" />
     <result column="collection_num" property="collectionNum" jdbcType="INTEGER" />
     <result column="is_buyed" property="isBuyed" jdbcType="BIT" />
-    <result column="contact_me" property="contactMe" jdbcType="BIT" />
+    <result column="contact_method" property="contactMethod" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="VARCHAR" />
-    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
-    <result column="contact_qq" property="contactQq" jdbcType="VARCHAR" />
-    <result column="contact_we_chat" property="contactWeChat" jdbcType="VARCHAR" />
-    
+    <result column="visited" property="visited" jdbcType="INTEGER" />
     <association property="user" javaType="cn.com.domain.User">  
             <id column="id" property="id" jdbcType="VARCHAR" />  
-            <result column="nick_name" property="nickName" jdbcType="VARCHAR" />  
+            <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+            <result column="integral" property="integral" jdbcType="INTEGER" />  
     </association>
     
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_id, type_id, goods_name, goods_content, pic, trade_place, price, is_bargain, 
-    collection_num, is_buyed, contact_me, create_time, contact_phone, contact_qq, contact_we_chat
+    id, user_id, type_id, sub_id, goods_name, goods_content, pic, trade_place, price, 
+    is_bargain, collection_num, is_buyed, contact_method, create_time, visited
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
-    u.nick_name,p.*
-    from goods_publish p LEFT JOIN `user` u ON p.user_id = u.id 
+    u.nick_name,u.integral,p.*
+    from goods_publish p inner join user u on u.id = p.user_id 
     where p.id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
@@ -41,17 +40,17 @@
   </delete>
   <insert id="insert" parameterType="cn.com.domain.GoodsPublish" >
     insert into goods_publish (id, user_id, type_id, 
-      goods_name, goods_content, pic, 
-      trade_place, price, is_bargain, 
-      collection_num, is_buyed, contact_me, 
-      create_time, contact_phone, contact_qq, 
-      contact_we_chat)
+      sub_id, goods_name, goods_content, 
+      pic, trade_place, price, 
+      is_bargain, collection_num, is_buyed, 
+      contact_method, create_time, visited
+      )
     values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
-      #{goodsName,jdbcType=VARCHAR}, #{goodsContent,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
-      #{tradePlace,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{isBargain,jdbcType=BIT}, 
-      #{collectionNum,jdbcType=INTEGER}, #{isBuyed,jdbcType=BIT}, #{contactMe,jdbcType=BIT}, 
-      #{createTime,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{contactQq,jdbcType=VARCHAR}, 
-      #{contactWeChat,jdbcType=VARCHAR})
+      #{subId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsContent,jdbcType=VARCHAR}, 
+      #{pic,jdbcType=VARCHAR}, #{tradePlace,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
+      #{isBargain,jdbcType=BIT}, #{collectionNum,jdbcType=INTEGER}, #{isBuyed,jdbcType=BIT}, 
+      #{contactMethod,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{visited,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.com.domain.GoodsPublish" >
     insert into goods_publish
@@ -64,6 +63,9 @@
       </if>
       <if test="typeId != null" >
         type_id,
+      </if>
+      <if test="subId != null" >
+        sub_id,
       </if>
       <if test="goodsName != null" >
         goods_name,
@@ -89,20 +91,14 @@
       <if test="isBuyed != null" >
         is_buyed,
       </if>
-      <if test="contactMe != null" >
-        contact_me,
+      <if test="contactMethod != null" >
+        contact_method,
       </if>
       <if test="createTime != null" >
         create_time,
       </if>
-      <if test="contactPhone != null" >
-        contact_phone,
-      </if>
-      <if test="contactQq != null" >
-        contact_qq,
-      </if>
-      <if test="contactWeChat != null" >
-        contact_we_chat,
+      <if test="visited != null" >
+        visited,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -114,6 +110,9 @@
       </if>
       <if test="typeId != null" >
         #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="subId != null" >
+        #{subId,jdbcType=INTEGER},
       </if>
       <if test="goodsName != null" >
         #{goodsName,jdbcType=VARCHAR},
@@ -139,20 +138,14 @@
       <if test="isBuyed != null" >
         #{isBuyed,jdbcType=BIT},
       </if>
-      <if test="contactMe != null" >
-        #{contactMe,jdbcType=BIT},
+      <if test="contactMethod != null" >
+        #{contactMethod,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=VARCHAR},
       </if>
-      <if test="contactPhone != null" >
-        #{contactPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="contactQq != null" >
-        #{contactQq,jdbcType=VARCHAR},
-      </if>
-      <if test="contactWeChat != null" >
-        #{contactWeChat,jdbcType=VARCHAR},
+      <if test="visited != null" >
+        #{visited,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -164,6 +157,9 @@
       </if>
       <if test="typeId != null" >
         type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="subId != null" >
+        sub_id = #{subId,jdbcType=INTEGER},
       </if>
       <if test="goodsName != null" >
         goods_name = #{goodsName,jdbcType=VARCHAR},
@@ -189,20 +185,14 @@
       <if test="isBuyed != null" >
         is_buyed = #{isBuyed,jdbcType=BIT},
       </if>
-      <if test="contactMe != null" >
-        contact_me = #{contactMe,jdbcType=BIT},
+      <if test="contactMethod != null" >
+        contact_method = #{contactMethod,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=VARCHAR},
       </if>
-      <if test="contactPhone != null" >
-        contact_phone = #{contactPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="contactQq != null" >
-        contact_qq = #{contactQq,jdbcType=VARCHAR},
-      </if>
-      <if test="contactWeChat != null" >
-        contact_we_chat = #{contactWeChat,jdbcType=VARCHAR},
+      <if test="visited != null" >
+        visited = #{visited,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -211,6 +201,7 @@
     update goods_publish
     set user_id = #{userId,jdbcType=VARCHAR},
       type_id = #{typeId,jdbcType=INTEGER},
+      sub_id = #{subId,jdbcType=INTEGER},
       goods_name = #{goodsName,jdbcType=VARCHAR},
       goods_content = #{goodsContent,jdbcType=VARCHAR},
       pic = #{pic,jdbcType=VARCHAR},
@@ -219,11 +210,9 @@
       is_bargain = #{isBargain,jdbcType=BIT},
       collection_num = #{collectionNum,jdbcType=INTEGER},
       is_buyed = #{isBuyed,jdbcType=BIT},
-      contact_me = #{contactMe,jdbcType=BIT},
+      contact_method = #{contactMethod,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=VARCHAR},
-      contact_phone = #{contactPhone,jdbcType=VARCHAR},
-      contact_qq = #{contactQq,jdbcType=VARCHAR},
-      contact_we_chat = #{contactWeChat,jdbcType=VARCHAR}
+      visited = #{visited,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   
@@ -239,6 +228,7 @@
 		<if test="sub!=null and sub !=''">
 		and p.sub_id = #{sub,jdbcType=VARCHAR}
 		</if>
+		and is_buyed = 0
 		</where>
   </sql>
   
@@ -256,6 +246,29 @@
     <include refid="sql_where" />
     order by ${time_collection} DESC
     LIMIT ${begin},${end}
+  </select>
+  
+  <select id="selectUserIdNotBuyed" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+   	p.*
+    from goods_publish p
+    where p.user_id = #{userId,jdbcType=VARCHAR} and p.is_buyed = 0
+    order by p.create_time DESC
+  </select>
+  
+  <select id="selectUserIdIsBuyed" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+   	p.*
+    from goods_publish p
+    where p.user_id = #{userId,jdbcType=VARCHAR} and p.is_buyed = 1
+    order by p.create_time DESC
+  </select>
+  
+  <select id="selectSellNumByUser" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select 
+   	COUNT(p.id)
+    from goods_publish p
+    where p.user_id = #{id,jdbcType=VARCHAR} and p.is_buyed = 1
   </select>
   
   

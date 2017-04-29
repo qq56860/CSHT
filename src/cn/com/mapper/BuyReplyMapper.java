@@ -1,5 +1,7 @@
 package cn.com.mapper;
 
+import java.util.ArrayList;
+
 import cn.com.domain.BuyReply;
 
 public interface BuyReplyMapper {
@@ -14,4 +16,7 @@ public interface BuyReplyMapper {
     int updateByPrimaryKeySelective(BuyReply record);
 
     int updateByPrimaryKey(BuyReply record);
+    
+    ArrayList<BuyReply> selectByCommentId(String commentId);
+    
 }

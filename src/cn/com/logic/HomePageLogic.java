@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.UUID;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
@@ -17,11 +20,16 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.com.domain.GoodsPublish;
 import cn.com.domain.GoodsSub;
 import cn.com.domain.GoodsType;
+import cn.com.domain.HotSearch;
 import cn.com.domain.User;
+import cn.com.domain.UserCollection;
 import cn.com.mapper.GoodsPublishMapper;
 import cn.com.mapper.GoodsSubMapper;
 import cn.com.mapper.GoodsTypeMapper;
+import cn.com.mapper.HotSearchMapper;
+import cn.com.mapper.UserCollectionMapper;
 import cn.com.mapper.UserMapper;
+import cn.com.service.CommonService;
 import cn.com.util.PropertyFactory;
 import cn.com.util.StringUtil;
 
@@ -38,28 +46,42 @@ public class HomePageLogic {
 	private GoodsSubMapper goodsSubMapper;
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	private UserCollectionMapper userCollectionMapper;
+	@Autowired
+	private HotSearchMapper hotSearchMapper;
 	
 	public ModelAndView homePage(HttpServletRequest request,HttpServletResponse response){
 		
 		ModelAndView model = new ModelAndView();
 		ModelMap modelMap = new ModelMap();
-		model.setViewName("/homePage");
+		model.setViewName("/home/homePage");
 		
 		String forwordSearch = request.getParameter("forwordSearch");
+		log.info("forwordSearch是"+forwordSearch);
 		String forwordType = request.getParameter("forwordType");
+		log.info("forwordType是"+forwordType);
 		String forwordSub = request.getParameter("forwordSub");
+		log.info("forwordSub是"+forwordSub);
+		String order = request.getParameter("order");
+		log.info("order是"+order);
+		String page = request.getParameter("page");
+		log.info("page是"+page);
 		modelMap.put("forwordSearch", forwordSearch);
 		modelMap.put("forwordType", forwordType);
 		modelMap.put("forwordSub", forwordSub);
-		
+		modelMap.put("order", order);
+		modelMap.put("page", page);
 		
 		ArrayList<GoodsType> type = goodsTypeMapper.selectAll();
 		ArrayList<GoodsSub> sub = goodsSubMapper.selectAll();
 		modelMap.put("type", type);
 		modelMap.put("sub", sub);
 		
-		model.addAllObjects(modelMap);
+		String logoutMsg = request.getParameter("logoutMsg");
+		modelMap.put("logoutMsg", logoutMsg);
 		
+		model.addAllObjects(modelMap);
 		return model;
 	}
 	
@@ -78,7 +100,7 @@ public class HomePageLogic {
 		}
 		
 		ModelAndView model = new ModelAndView();
-		model.setViewName("list");
+		model.setViewName("/home/list");
 		
 		ModelMap modelMap = goodsSearch(time_collection,type,sub,search,Integer.valueOf(pageNum));
 		
@@ -122,18 +144,48 @@ public class HomePageLogic {
 		
 		int goodsNumber = goodsPublishMapper.selectGoodsSize(map);
 		log.info("共有数据条数："+goodsNumber);
+		modelMap.put("goodsSize", goodsNumber);//共搜索出物品数量
 		goods = goodsPublishMapper.selectGoods(map);
 		
+		//如果使用的search搜索，且搜索出来的物品大于1，则插入搜索表
+		if(goodsNumber > 1 && search != null){
+			HotSearch hot = hotSearchMapper.selectByText(search);
+			if(hot != null){
+				hot.setHot(hot.getHot()+1);
+			}else{
+				hot = new HotSearch();
+				hot.setId(UUID.randomUUID().toString());
+				hot.setSearchText(search);
+				hot.setHot(1);
+			}
+		}	
+		
+		//搜索显示第一个图片
+		User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
 		for (int i = 0; i < goods.size() ; i++) {
 			GoodsPublish good = goods.get(i);
 			String picName = good.getPic().split(",")[0];
 			good.setPic(PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
 					+PropertyFactory.getProperty("goodsImgPath")+picName+".png");
-//			System.out.println(good.getUser().getNickName());
+			//用户若登录，显示已收藏
+			if(user != null){
+				Map<String, String> ucmap = new HashMap<String, String>();
+				ucmap.put("goodsid", good.getId());
+				ucmap.put("userid", user.getId());
+				UserCollection uc = userCollectionMapper.selectByGoodsidAndUserid(ucmap);
+				if(uc == null){
+					good.setIsCollection(false);
+				}else{
+					good.setIsCollection(true);
+				}
+			}else{
+				good.setIsCollection(false);
+			}
+			
 		}
 		modelMap.put("goodsPublish", goods);
 		
-		if( goodsNumber%pageAccount == 0){
+		if( goodsNumber % pageAccount == 0){
 			pageNumber = goodsNumber/pageAccount ;
 		}else{
 			pageNumber = goodsNumber/pageAccount + 1;

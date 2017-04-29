@@ -15,6 +15,12 @@ public class User {
 
     private String password;
 
+    private String pic;
+
+    private Integer integral;
+
+    private Integer dayIntegral;
+
     private String regTime;
 
     private Integer loginNum;
@@ -26,6 +32,8 @@ public class User {
     private Integer studentCardAuthentication;
 
     private Integer isClose;
+	
+	private Integer notReadNews;
     
     private List<GoodsPublish> publishList;
     
@@ -37,8 +45,8 @@ public class User {
 	public void setPublishList(List<GoodsPublish> publishList) {
 		this.publishList = publishList;
 	}
-
-	public String getId() {
+	
+    public String getId() {
         return id;
     }
 
@@ -84,6 +92,30 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
+
+    public Integer getDayIntegral() {
+        return dayIntegral;
+    }
+
+    public void setDayIntegral(Integer dayIntegral) {
+        this.dayIntegral = dayIntegral;
     }
 
     public String getRegTime() {
@@ -132,5 +164,13 @@ public class User {
 
     public void setIsClose(Integer isClose) {
         this.isClose = isClose;
+    }
+
+    public Integer getNotReadNews() {
+        return notReadNews;
+    }
+
+    public void setNotReadNews(Integer notReadNews) {
+        this.notReadNews = notReadNews;
     }
 }

@@ -26,5 +26,9 @@ public interface GoodsPublishMapper {
     
     ArrayList<GoodsPublish> selectGoods(Map<String,String> map);
     
+    ArrayList<GoodsPublish> selectUserIdNotBuyed(String userId);
+    ArrayList<GoodsPublish> selectUserIdIsBuyed(String userId);
+    
+    int selectSellNumByUser(String id);
     
 }

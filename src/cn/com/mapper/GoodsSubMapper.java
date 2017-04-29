@@ -19,4 +19,6 @@ public interface GoodsSubMapper {
     
     ArrayList<GoodsSub> selectAll();
     
+    ArrayList<GoodsSub> selectByTypeId(Integer typeId);
+    
 }

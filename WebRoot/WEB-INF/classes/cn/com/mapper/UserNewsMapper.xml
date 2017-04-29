@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.mapper.UserNewsMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.domain.UserNews" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="who" property="who" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="is_read" property="isRead" jdbcType="BIT" />
+    <collection property="user" ofType="cn.com.domain.User" column="id">  
+            <id column="id" property="id"/>
+            <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="goodsPublish" ofType="cn.com.domain.GoodsPublish" column="id">  
+            <id column="id" property="id"/>
+            <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="goodsBuy" ofType="cn.com.domain.GoodsBuy" column="id">  
+            <id column="id" property="id"/>
+            <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, who, time, area, goods_id, content, user_id, is_read
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_news
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_news
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.com.domain.UserNews" >
+    insert into user_news (id, who, time, 
+      area, goods_id, content, 
+      user_id, is_read)
+    values (#{id,jdbcType=VARCHAR}, #{who,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{isRead,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.domain.UserNews" >
+    insert into user_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="who != null" >
+        who,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="isRead != null" >
+        is_read,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="who != null" >
+        #{who,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null" >
+        #{isRead,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.domain.UserNews" >
+    update user_news
+    <set >
+      <if test="who != null" >
+        who = #{who,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null" >
+        is_read = #{isRead,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.domain.UserNews" >
+    update user_news
+    set who = #{who,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      is_read = #{isRead,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectNumByUserid" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select 
+    count(id)
+    from user_news
+    where user_id = #{userid,jdbcType=VARCHAR} and is_read = 0
+  </select>
+  
+  <delete id="deleteByUseridTimeOut"  parameterType="java.util.Map" >
+    delete from user_news
+    where user_id = #{userid,jdbcType=VARCHAR} and time <![CDATA[<]]> #{time,jdbcType=VARCHAR}
+  </delete>
+  
+  <update id="updateAllNotReadByUser" parameterType="java.lang.String" >
+    update user_news
+    set is_read = 1
+    where user_id = #{userId,jdbcType=VARCHAR} and is_read = 0
+  </update>
+  
+  <select id="selectPublishByUserid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    n.*,p.goods_name,u.nick_name
+    from (user_news n INNER JOIN `user` u ON n.who = u.id) INNER JOIN goods_publish p ON n.goods_id = p.id 
+    where n.user_id = #{userid,jdbcType=VARCHAR} and n.area = "publish"
+  </select>
+  
+  <select id="selectBuyByUserid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    n.*,b.goods_name,u.nick_name
+    from (user_news n INNER JOIN `user` u ON n.who = u.id) INNER JOIN goods_buy b ON n.goods_id = b.id 
+    where n.user_id = #{userid,jdbcType=VARCHAR} and n.area = "buy"
+  </select>
+  
+</mapper>

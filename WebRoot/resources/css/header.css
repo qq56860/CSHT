@@ -4,8 +4,9 @@
 
 .logined_div{
 	position: relative;
-	top:-72px;
+	top:20px;
 	left:900px;
+	width:200px;
 }
 
 .dropdown:hover .header-dropdown-menu{
@@ -13,7 +14,21 @@
 }
 
 .header-dropdown-menu{
-	width:160px;
+	width:80px;
 	display: none;
 } 
+.header-dropdown-menu li{
+	position: relative;
+	left:-50px;
+}
+
+.header-dropdown-menu li:hover{
+	background-color: #cccccc;
+} 
+
+.reg-inputSpan{
+	position:absolute;
+	width:150px;
+	left:440px;
+}
 

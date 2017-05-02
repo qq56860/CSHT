@@ -68,9 +68,10 @@ public class CodeLogic {
 			log.info("插入code表错误");
 		}
 		
-		String[] datas = new String[]
-				{code,PropertyFactory.getProperty("codeTimeOut")};
-		SmsThread sms = new SmsThread(phone,"1",datas);
+		JSONObject obj = new JSONObject();
+		obj.put("code", c.getCode());
+		obj.put("time", "10");
+		SmsThread sms = new SmsThread(phone,"SMS_63905538",obj.toString());
 		//第一个参数：电话号或电话数组，用“,”分割
 		//第二个参数是模版id
 		//第三个参数是变量数组
@@ -128,9 +129,11 @@ public class CodeLogic {
 			Thread emailThread = new Thread(emailT);
 			emailThread.run();
 		}else if("phone".equals(type)){
-			String[] datas = new String[]
-						{code,PropertyFactory.getProperty("codeTimeOut")};
-			SmsThread sms = new SmsThread(phoneOrEmail,"1",datas);
+			JSONObject obj = new JSONObject();
+			obj.put("code", c.getCode());
+			obj.put("time", "10");
+			obj.put("nickName", user.getNickName());
+			SmsThread sms = new SmsThread(phoneOrEmail,"SMS_63935637",obj.toString());
 			//第一个参数：电话号或电话数组，用“,”分割
 			//第二个参数是模版id
 			//第三个参数是变量数组
@@ -205,9 +208,12 @@ public class CodeLogic {
 			Thread emailThread = new Thread(emailT);
 			emailThread.run();
 		}else if("phone".equals(type)){
-			String[] datas = new String[]
-						{code,PropertyFactory.getProperty("codeTimeOut")};
-			SmsThread sms = new SmsThread(phone,"1",datas);
+			User userNick = (User) request.getSession().getAttribute("user");
+			JSONObject obj = new JSONObject();
+			obj.put("code", c.getCode());
+			obj.put("time", "10");
+			obj.put("nickName", userNick.getNickName());
+			SmsThread sms = new SmsThread(phone,"SMS_63770739",obj.toString());
 			//第一个参数：电话号或电话数组，用“,”分割
 			//第二个参数是模版id
 			//第三个参数是变量数组

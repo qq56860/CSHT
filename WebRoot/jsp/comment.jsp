@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<c:forEach items="${commentList }" var="comment">
 				<div class="media">
 					<a href="/CSHT/user/info?id=${comment.user.id }" target="_blank" class="pull-left"  >
-						<img src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+						<img src="<%=PropertyFactory.getProperty("serverPath")
 						+PropertyFactory.getProperty("userImgPath") %>${comment.user.pic }.png" 
 						class="media-object img-circle" alt='头像' 
 						width="50px" height="50px"

@@ -37,11 +37,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-md-10 column">
 				<div class="tabbable" id="tabs-640434">
 					<ul class="nav nav-tabs text-center">
+						<c:if test="${user.id == reqUser.id }">
 						<li  style="width: 20%;" >
 							 <a href="/CSHT/user/info?id=${reqUser.id }">个人中心</a>
 						</li>
 						<li class="active" style="width: 20%;">
-							 <a href="#panel-myCollection?id=${reqUser.id }" data-toggle="tab">我的收藏</a>
+							 <a href="#panel-myCollection" data-toggle="tab">我的收藏</a>
 						</li >
 						<li style="width: 20%;">
 							 <a href="/CSHT/user/publish?id=${reqUser.id }">物品发布</a>
@@ -52,6 +53,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li style="width: 20%;">
 							 <a href="/CSHT/user/news">我的消息<span style="color: red;">&nbsp;&nbsp;&nbsp;${reqUser.notReadNews }</span></a>
 						</li>
+						</c:if>
+						<c:if test="${user.id != reqUser.id }">
+							<li class="active" style="width: 33%;">
+								 <a href="#panel-myCollection" data-toggle="tab">TA的收藏</a>
+							</li >
+							<li style="width: 34%;">
+								 <a href="/CSHT/user/publish?id=${reqUser.id }">TA的发布</a>
+							</li>
+							<li style="width: 33%;">
+								 <a href="/CSHT/user/buy?id=${reqUser.id }">TA的求购</a>
+							</li>
+						</c:if>
 					</ul>
 				</div>
 			</div>

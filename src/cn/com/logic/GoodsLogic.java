@@ -107,7 +107,7 @@ public class GoodsLogic {
 		List<String> picList = new ArrayList<String>();
 		log.info("该物品有图片"+picName.length+"张");
 		for (int i = 0; i < picName.length; i++) {
-			picList.add(PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+			picList.add(PropertyFactory.getProperty("serverPath")
 					+PropertyFactory.getProperty("goodsImgPath")+picName[i]+".png");
 		}
 		modelMap.put("picList", picList);

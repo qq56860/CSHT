@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									    <div class="imgnum">
 									        <input type="file" class="filepath" />
 									        <span class="closePic">X</span>
-									        <img src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+									        <img src="<%=PropertyFactory.getProperty("serverPath")
 						+PropertyFactory.getProperty("sysImg") %>uploadPic.png" class="imgBG" />
 									        <img src="" class="imgPic" />
 									    </div>

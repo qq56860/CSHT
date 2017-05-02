@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							>
 							用户&nbsp;：&nbsp;<a href="/CSHT/user/info?id=${newsb.who }" target="_blank" ><span>${newsb.user.nickName }</span></a>
 							&nbsp;&nbsp;&nbsp;在物品&nbsp;：&nbsp;
-							<a href="/CSHT/goods/detail?id=${newsb.goodsId }" target="_blank">${newsb.goodsPublish.goodsName }</a>
+							<a href="/CSHT/buyPage" target="_blank">${newsb.goodsPublish.goodsName }</a>
 							&nbsp;&nbsp;&nbsp;中评论<br />
 							<span class="mainTones-gray">${newsb.content }</span>
 							<br />

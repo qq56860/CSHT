@@ -37,6 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-md-10 column">
 				<div class="tabbable" id="tabs-640434">
 					<ul class="nav nav-tabs text-center">
+						<c:if test="${user.id == reqUser.id }">
 						<li  style="width: 20%;" >
 							 <a href="/CSHT/user/info?id=${reqUser.id }">个人中心</a>
 						</li>
@@ -52,6 +53,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li style="width: 20%;">
 							 <a href="/CSHT/user/news?id=${reqUser.id }">我的消息<span style="color: red;">&nbsp;&nbsp;&nbsp;${reqUser.notReadNews }</span></a>
 						</li>
+						</c:if>
+						<c:if test="${user.id != reqUser.id }">
+							<li style="width: 33%;">
+								 <a href="/CSHT/user/collection?id=${reqUser.id }">TA的收藏</a>
+							</li >
+							<li class="active" style="width: 34%;">
+								 <a href="#panel-myPublish" data-toggle="tab">TA的发布</a>
+							</li>
+							<li style="width: 33%;">
+								 <a href="/CSHT/user/buy?id=${reqUser.id }">TA的求购</a>
+							</li>
+						</c:if>
 					</ul>
 				</div>
 			</div>
@@ -66,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<c:forEach items="${publishList }" var="publish" >
 					<div class="media"  style="border-bottom: solid;border-top: solid;border-color: gray;border-width: 1px;">
 						<a href="/CSHT/goods/detail?id=${publish.id }" target="_blank" class="pull-left">
-						<img src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+						<img src="<%=PropertyFactory.getProperty("serverPath")
 									+PropertyFactory.getProperty("goodsImgPath") %>${publish.pic }.png" 
 									class="media-object img-circle" alt='图片' width="80px" height="80px;"/></a>
 						<div class="media-body">
@@ -78,10 +91,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<span>物品详情：</span>${publish.goodsContent }
 							</div>
 							<span>收藏人数：${publish.collectionNum }</span>
+							
+							<c:if test="${user.id == reqUser.id }">
 							<div class="pull-right">
 								<a href="/CSHT/user/goodsIsBuyed?goodsid=${publish.id }&userid=${reqUser.id }"><span class="btn mainTones-green">已售出</span></a>
 								<a href="/CSHT/user/deletePublish?goodsid=${publish.id }&userid=${reqUser.id }"><span class="btn mainTones-green">撤销发布</span></a>
 							</div>
+							</c:if>
 							<br />
 						</div>
 					</div>
@@ -92,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<c:forEach items="${publishIsBuyedList }" var="publish" >
 					<div class="media"  style="border-bottom: solid;border-top: solid;border-color: gray;border-width: 1px;">
 						<a href="/CSHT/goods/detail?id=${publish.id }" target="_blank" class="pull-left">
-						<img src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+						<img src="<%=PropertyFactory.getProperty("serverPath")
 									+PropertyFactory.getProperty("goodsImgPath") %>${publish.pic }.png" 
 									class="media-object img-circle" alt='图片' width="80px" height="80px;"/></a>
 						<div class="media-body">

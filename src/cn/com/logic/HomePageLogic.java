@@ -165,7 +165,7 @@ public class HomePageLogic {
 		for (int i = 0; i < goods.size() ; i++) {
 			GoodsPublish good = goods.get(i);
 			String picName = good.getPic().split(",")[0];
-			good.setPic(PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+			good.setPic(PropertyFactory.getProperty("serverPath")
 					+PropertyFactory.getProperty("goodsImgPath")+picName+".png");
 			//用户若登录，显示已收藏
 			if(user != null){

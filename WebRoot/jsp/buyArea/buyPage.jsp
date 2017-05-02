@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="list-publish" onmouseover="this.style.cursor='hand'" <c:if test="${user == null }"> onclick="userLogin()" </c:if>
 			<c:if test="${user != null }"> onclick="javascript:window.location.href='/CSHT/publish/goods'" </c:if>
 			  >
-		<img alt="" src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+		<img alt="" src="<%=PropertyFactory.getProperty("serverPath")
 						+PropertyFactory.getProperty("sysImg") %>publishBTN.gif" 
 						alt='btn'
 						/>
@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="list-buy" onmouseover="this.style.cursor='hand'" <c:if test="${user == null }"> onclick="userLogin()" </c:if>
 		<c:if test="${user != null }"> onclick="javascript:window.location.href='/CSHT/publish/buy'" </c:if>
 		>
-		<img alt="" src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+		<img alt="" src="<%=PropertyFactory.getProperty("serverPath")
 						+PropertyFactory.getProperty("sysImg") %>buyBTN.gif" 
 						alt='btn'
 						/>
@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 <c:if test="${user == null }">
 						 <a href="javascript:void(0)" onclick="userLogin()" class="pull-left">
 						 </c:if>
-						 <img src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+						 <img src="<%=PropertyFactory.getProperty("serverPath")
 									+PropertyFactory.getProperty("userImgPath") %>${buy.user.pic }.png" 
 									class="media-object img-circle" alt='头像' width="130px" height="130px;"/>
 						

@@ -127,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<a class="mainTones-gray" href="javascript:void(0)" onclick="userLogin()">
 									</c:if>
 									${goods.user.nickName }</span></a>
-									<img alt='lv' src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+									<img alt='lv' src="<%=PropertyFactory.getProperty("serverPath")
 											+PropertyFactory.getProperty("sysImg") %>lv/lv
 											<c:if test="${goods.user.integral < 50 }">
 											1

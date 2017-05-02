@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<div class="row" style="width: 1000px;">
 				<c:if test="${ fn:length(goodsPublish) == 0 }">
-					<img src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+					<img src="<%=PropertyFactory.getProperty("serverPath")
 							+PropertyFactory.getProperty("sysImg")%>noGoods.png"
 							class="img-circle" alt='noGoods' 
 							width="400px" height="400px" style="position: relative;left:300px;"

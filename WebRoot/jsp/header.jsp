@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="header-hight-width ">
 					<div style="position: absolute;left:2px;">
 						<a href="/CSHT/homePage">
-						<img alt='logo' src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+						<img alt='logo' src="<%=PropertyFactory.getProperty("serverPath")
 						+PropertyFactory.getProperty("sysImg") %>logo.png" 
 						width="80px" height="80px"
 						/>
@@ -98,13 +98,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="dropdown">
 								<div class="header-dropdown">
 									<button type="button" class="btn mainTones-bg-white" onclick="javascript:location.href='/CSHT/user/info?id=${user.id }'">
-										<img alt='头像' src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+										<img alt='头像' src="<%=PropertyFactory.getProperty("serverPath")
 											+PropertyFactory.getProperty("userImgPath") %>${user.pic }.png" 
 											class="img-circle" width="30px" height="30px"
 											/>
 										&nbsp;
 										<span class="mainTones-yellow" style="font-size: 15px;">${user.nickName }</span>
-										<img alt='lv' src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+										<img alt='lv' src="<%=PropertyFactory.getProperty("serverPath")
 											+PropertyFactory.getProperty("sysImg") %>lv/lv
 											<c:if test="${user.integral < 50 }">
 											1

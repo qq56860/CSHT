@@ -175,8 +175,8 @@ public class EmailService {
 		
 		//创建图片“节点”
 		MimeBodyPart image = new MimeBodyPart();
-		DataHandler dh = new DataHandler(new URLDataSource(new URL(PropertyFactory.getProperty("serverPath")+":"+
-							PropertyFactory.getProperty("serverPort")+PropertyFactory.getProperty("sysImg")+"welcome.png")));
+		DataHandler dh = new DataHandler(new URLDataSource(new URL(PropertyFactory.getProperty("serverPath")+
+							PropertyFactory.getProperty("sysImg")+"welcome.png")));
 		image.setDataHandler(dh);          // 将图片数据添加到“节点”
 		image.setContentID("QRcode");     // 为“节点”设置一个唯一编号（在文本“节点”将引用该ID）
 		

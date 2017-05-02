@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-md-8 column">
 				<div class="row clearfix">
 					<div class="col-md-4 column">
-						<img alt="头像" src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+						<img alt="头像" src="<%=PropertyFactory.getProperty("serverPath")
 						+PropertyFactory.getProperty("userImgPath") %>${reqUser.pic }.png" 
 						width="180" height="180" class="img-circle"
 							/>

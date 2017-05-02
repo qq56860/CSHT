@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row clearfix">
 			
 			<div class="col-md-3 column">
-				<img src="<%=PropertyFactory.getProperty("serverPath")+":"+PropertyFactory.getProperty("serverPort")
+				<img src="<%=PropertyFactory.getProperty("serverPath")
 					+PropertyFactory.getProperty("sysImg") %>rule.png" 
 					alt='rule' class="pull-right" style="position: relative;top:-50px;"
 					/>

@@ -215,6 +215,7 @@ public class UserLogic {
 		user.setToken(IDGenerator.getId());
 		user.setIntegral(0);
 		user.setPic("default");
+		user.setDayIntegral(0);
 		
 		try {
 			userMapper.insert(user);

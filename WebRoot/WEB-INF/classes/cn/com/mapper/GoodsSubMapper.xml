@@ -94,7 +94,9 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select 
     *
-    from goods_sub
+    from goods_sub 
+    where is_hide = 0 
+    order by create_time;
   </select>
   
   <select id="selectByTypeId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

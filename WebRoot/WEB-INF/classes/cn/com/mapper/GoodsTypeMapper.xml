@@ -5,11 +5,11 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="VARCHAR" />
-    <result column="order" property="order" jdbcType="INTEGER" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
     <result column="is_hide" property="isHide" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, type, create_time, order, is_hide
+    id, type, create_time, order_num, is_hide
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="cn.com.domain.GoodsType" >
     insert into goods_type (id, type, create_time, 
-      order, is_hide)
+      order_num, is_hide)
     values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
-      #{order,jdbcType=INTEGER}, #{isHide,jdbcType=BIT})
+      #{orderNum,jdbcType=INTEGER}, #{isHide,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="cn.com.domain.GoodsType" >
     insert into goods_type
@@ -39,8 +39,8 @@
       <if test="createTime != null" >
         create_time,
       </if>
-      <if test="order != null" >
-        order,
+      <if test="orderNum != null" >
+        order_num,
       </if>
       <if test="isHide != null" >
         is_hide,
@@ -56,8 +56,8 @@
       <if test="createTime != null" >
         #{createTime,jdbcType=VARCHAR},
       </if>
-      <if test="order != null" >
-        #{order,jdbcType=INTEGER},
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=INTEGER},
       </if>
       <if test="isHide != null" >
         #{isHide,jdbcType=BIT},
@@ -73,8 +73,8 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=VARCHAR},
       </if>
-      <if test="order != null" >
-        order = #{order,jdbcType=INTEGER},
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=INTEGER},
       </if>
       <if test="isHide != null" >
         is_hide = #{isHide,jdbcType=BIT},
@@ -86,7 +86,7 @@
     update goods_type
     set type = #{type,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=VARCHAR},
-      order = #{order,jdbcType=INTEGER},
+      order_num = #{orderNum,jdbcType=INTEGER},
       is_hide = #{isHide,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -94,7 +94,9 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select 
     *
-    from goods_type
+    from goods_type 
+    where is_hide = 0
+    order by order_num
   </select>
   
   

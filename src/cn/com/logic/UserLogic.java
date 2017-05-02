@@ -204,7 +204,7 @@ public class UserLogic {
 		user.setId(UUID.randomUUID().toString());
 		user.setIsClose(0);
 		user.setLastIp(ip);
-		user.setLastTime("");
+		user.setLastTime(DateHelper.getyyyyMMddHHmmssString());
 		user.setLoginNum(0);
 		user.setNickName(nickname);
 		String Sha256Password = new Sha256Hash(password,PropertyFactory.getProperty("SHA256Salt")).toString();

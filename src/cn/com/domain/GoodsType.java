@@ -7,7 +7,7 @@ public class GoodsType {
 
     private String createTime;
 
-    private Integer order;
+    private Integer orderNum;
 
     private Boolean isHide;
 
@@ -35,12 +35,12 @@ public class GoodsType {
         this.createTime = createTime;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrderNum() {
+        return orderNum;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
     }
 
     public Boolean getIsHide() {
